@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>9-2</title>
+    <script>
+        window.addEventListener('message',function(ev){
+            alert(ev.origin);
+           if(ev.origin!='http://localhost:49559'){
+               return;
+           } ;
+            document.body.innerHTML='从'+ev.origin+'那里传来消息'+'<br>\"'+ev.data+'\"';
+            //向主页发送消息
+            ev.source.postMessage('你好,这是'+this.location,ev.origin);
+        },false)
+
+    </script>
+</head>
+<body>
+<h1>iframe</h1>
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>6-1</title>
+</head>
+<body>
+<object classid="classid:sun" width="425" height="344" codebase="swflash.cab#version=6,0,60,4">
+    <param name="allowFullScreen" value="true"/>
+    <param name="allowscriptaccess" value="always"/>
+    <param name="allowFullScreen" value="true"/>
+    <embed src="ls/sun.swf" type="application/x-shockwave-flash" width="425" height="344" allowscriptaccess="always"
+           allowFullScreen="true">
+    </embed>
+</object>
+<video src=""></video>
+<audio src="">您的浏览器不支持audio元素</audio>
+<video src="sample.mov" id="videoElement">
+    >您的浏览器不支持video元素
+</video>
+<script>
+    var video = document.getElementById("videoElement");
+    video.addEventListener("error",
+    function () {
+        var error = video.error;
+        switch (error.code) {
+            case 1:
+                alert("视频下载过程中播放终止");
+                break;
+            case 2:
+                alert("网络发生故障，视频下载过程中终止");
+                break;
+            case 3:
+                alert("解码失败！");
+                break;
+            case 4:
+                alert("不支持播放的视频格式");
+                break;
+        }
+    }, false);
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>16-10table 相关的属性</title>
+    <style>
+        .table {
+            display:table;
+            border: solid 3px #0af;
+        }
+        .caption {
+            display:table-caption;
+            text-align:center;
+        }
+        .tr {
+            display: table-row;
+        }
+        .td {
+            display: table-cell;
+            border: solid 2px #af0;
+            padding: 10px;
+        }
+        .thead {
+            display:table-header-group;
+            background-color:#ffa;
+        }
+    </style>
+</head>
+<body>
+<div class="table">
+    <div class="caption">字母表</div>
+    <div class="thead">
+        <div class="tr">
+            <div class="td"> 1st</div>
+            <div class="td"> 2st</div>
+            <div class="td"> 3st</div>
+            <div class="td"> 4st</div>
+            <div class="td"> 5st</div>
+        </div>
+        <div class="tr">
+            <div class="td"> A</div>
+            <div class="td"> B</div>
+            <div class="td"> C</div>
+            <div class="td"> D</div>
+            <div class="td"> E</div>
+        </div>
+        <div class="tr">
+            <div class="td"> F</div>
+            <div class="td"> G</div>
+            <div class="td"> H</div>
+            <div class="td"> I</div>
+            <div class="td"> J</div>
+        </div>
+        <div class="tr">
+            <div class="td"> K</div>
+            <div class="td"> L</div>
+            <div class="td"> M</div>
+            <div class="td"> N</div>
+            <div class="td"> O</div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="test">陕西凯锐信息有限责任公司！陕西凯锐信息有限责任公司 陕西凯锐信息有限责任公司! </div>
+</div>
+<style>
+    .container{
+        border:1px solid #99251c;
+        margin: 10px auto;
+    }
+    .test {
+        width: 150px;
+        border:1px solid #0000ff;
+        max-height:42px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-text-overflow:ellipsis;
+        white-space: nowrap;
+    }
+</style>
+</body>
+</html>

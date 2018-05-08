@@ -1,0 +1,17 @@
+
+SET NAMES UTF8;
+-- DROP DATABASE IF EXISTS ch5;
+CREATE DATABASE ch5 CHARSET=UTF8;
+USE ch5;
+
+#创建班级表
+CREATE TABLE guitarwars(
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  date DATETIME,
+  name VARCHAR(20),
+  score INT
+);
+#表中添加列
+ALTER TABLE guitarwars ADD COLUMN age TINYINT;
+#表中删除列
+ALTER TABLE guitarwars DROP COLUMN age;

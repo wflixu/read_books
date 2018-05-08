@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>5-26canvas</title>
+
+</head>
+<body >
+<h1>canvas 元素示例</h1>
+<canvas id="canvas" width="800" height="600">
+
+</canvas>
+<script >
+    var globalid,i=0;
+    function draw(id){
+        globalid=id;
+        setInterval(composite,1000);
+    }
+    function composite(){
+        console.log(i);
+        var canvas=document.getElementById(globalid);
+        if(canvas==null){
+            return false;
+        }
+         ctx = canvas.getContext('2d');
+        var opt = ["source-atop","source-in","source-out","source-over","destination-atop","destination-in","destination-out","destination-over","lighter","copy","xor"];
+        if(i>10) i=0;
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.save();
+        ctx.fillStyle = "blue";
+        ctx.fillRect(10,10,60,60);
+        ctx.globalCompositeOperation=opt[i];
+       ctx.beginPath();
+        ctx.fillStyle ="red";
+        ctx.arc(60,60,30,0,Math.PI*2,false);
+        ctx.fill();
+        ctx.restore();
+        i=i+1;
+    }
+    window.onload=function (){
+        draw("canvas");
+    }
+</script>
+</body>
+</html>

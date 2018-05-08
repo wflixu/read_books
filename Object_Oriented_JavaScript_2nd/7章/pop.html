@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>pop</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+</head>
+
+<body>
+    <h1>这是一个弹出窗口</h1>
+    <script>
+    var ww = 200,
+        wh = 200,
+        px = 0,
+        py = 0;
+        wah=window.screen.availHeight;
+        waw = window.screen.availWidth;
+       
+    var timer = setInterval(function() {
+        ww += 10;
+        wh += 10;
+        if (ww > 400) {
+            clearInterval(timer);
+        }
+        window.resizeTo(ww, wh);
+
+    }, 200);
+
+     var timer1 = setInterval(function() {
+    	 py = Math.round(Math.random()*(wah-400));
+        px = Math.round(Math.random()*(waw-400));
+        
+        window.moveTo(px, py);
+       
+    }, 200)
+    </script>
+</body>
+
+</html>

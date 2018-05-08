@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>homework</title>
+  <style>
+	body{
+		text-align: center;
+	}
+	#container {
+		width: 200px;
+		height: 200px;
+		margin: 10px auto;
+		border: 1px solid #999;
+	}
+	.selected{
+		opacity: 0.4;
+	}
+  </style>
+ </head>
+ <body>
+	<div id='container'></div>
+	<hr>
+	<div>
+		<img src="../img/hw1.png" id='img1' >
+		<img src="../img/hw2.png" id='img3'>
+		<img src="../img/hw3.png" id='img3'>
+	</div>
+	<script>
+	var dragged = null; //指向被拖动的源对象
+	//源对象触发的事件
+		var list = document.querySelectorAll('img');
+		for(var i in list ){
+			var im = list[i];
+			im.ondragstart = function(){
+			dragged = this;
+			}
+			im.ondrag = function(){
+			}
+			im.ondragend = function(){
+			}
+		}
+
+  //目标对象触发的事件
+  container.ondragenter = function(){
+    this.style.background = "#400";
+  }
+ container.ondragover = function(e){
+    e.preventDefault();
+  }
+ container.ondragleave = function(){
+    
+  }
+ container.ondrop = function(){
+
+	 var cl=document.getElementsByClassName('selected');
+	 if(cl.length>0){cl[0].setAttribute('class','');}
+    dragged.setAttribute('class','selected');
+    this.innerHTML=`<img src="${dragged.src}">`;
+	this.style.background = "#f2f2f2";
+  }
+	</script>
+ </body>
+</html>

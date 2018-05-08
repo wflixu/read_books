@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>20-4</title>
+    <style>
+       /* #sidebar {
+            float:left;
+            width:200px;
+            padding:20px;
+            background-color:orange;
+        }
+        #contents {
+            float:left;
+            width:300px;
+            padding:20px;
+            background-color:yellow;
+        }
+        #right-bar{
+            float:left;
+            width:300px;
+            padding:20px;
+            background-color:limegreen;
+        }
+        #sidebar,#right-bar, #contents {
+            box-sizing:border-box;
+        }*/
+
+        #container{
+            display:-moz-box;
+            display:-webkit-box;
+        }
+        #sidebar{
+            width:200px;
+            padding:20px;
+            background-color: orange;
+        }
+        /*#contents {
+            width:300px;
+            padding:20px;
+            background-color:yellow;
+        }*/
+       #contents{
+           -moz-box-flex:1;
+           -webkit-box-flex:1;
+           padding:20px;
+           background-color:yellow;
+       }
+        #right-bar{
+            width:200px;
+            padding:20px;
+            background-color:limegreen;
+        }
+       #sidebar,#right-bar, #contents {
+           box-sizing:border-box;
+       }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="sidebar">
+        <h2>左边栏</h2>
+        <ul>
+            <li><a href="#">链接1</a></li>
+            <li><a href="#">链接2</a></li>
+            <li><a href="#">链接3</a></li>
+            <li><a href="#">链接4</a></li>
+        </ul>
+    </div>
+    <div id="contents">
+        <h2>内容</h2>
+        <p>
+            1.不要看对方说了什么，而是思考他为什么说这个
+            昨晚我爸打电话给我，告诉我1月下旬的时候杭州天气可能会不好，让我注意保暖。
+            我告诉他我一月中旬就会回去的，老爸很满意的挂电话，停止了给我弯曲杭州天气的进程。
+            他其实这句话只是告诉我：过年早点回来，我想你，但是他么那个年代的人是表达不出来这种思念的，会绕用各种绕口的方式表达内心的感情。
+
+            快到圣诞了，女友和我讲最近有个男生经常追求她，今天还给了她礼物，她说完之后停了一会儿，这个停顿是为了看我的反应，所以我理所当然的开始吃醋，开始和她表达爱意，在这个过程中还不忘打开了t宝。
+            其实她告诉我这件事的动机只有两个：
+            a.试探一下你是不是在乎我。
+            b.我想要圣诞礼物
+
+            4岁的小侄子打电话给我，说想我了，想我去上海陪宝宝玩。
+            他的需求有两个：
+            a.家里确实无聊，想我带他出去烧火，带他出去玩各种刺激的
+            b.他想吃糖，只有我会偷偷给他糖吃
+            我自己确实无法去上海，所以我告诉他，杭州最近有怪兽，我走不开，但是我打怪兽国家发我糖作为奖励，这些糖都寄给他吧。
+
+            当我不懂这个道理的时候，觉得世界真心复杂，和一个人交往真难，但是慢慢的开始掌握这种思维之后，世界在慢慢变得简单起来。
+            这种能力需要练习，练习的方式是换位思考，初期肯定经常出错，但是有了这样的意识，就不会活得混混沌沌了，每一次成功的感知或者失败的感知，都是知识库的一部分。
+            这也能培养观察能力，当你确实的在使用这个能力的时候，你会发现，其实以前你和别人的矛盾都是你们在讨论不同的问题，识别不了对方需求，表达不出自己的需求。
+        </p>
+    </div>
+    <div id="right-bar">
+        <h2>右边栏</h2>
+        <ul>
+            <li><a href="#">超链接1</a></li>
+            <li><a href="#">超链接2</a></li>
+            <li><a href="#">超链接3</a></li>
+            <li><a href="#">超链接4</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

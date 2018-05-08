@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>10-4线程交互</title>
+    <script>
+        var intArray = new Array(100);
+        var intstr='';
+        for(var i=0;i<100;i++){
+            intArray[i] = parseInt(Math.floor(Math.random()*100));
+            if(i!=0){
+                intstr+=';';
+            }
+            intstr+=intArray[i];
+        }
+        var worker = new Worker('10-4.js');
+        worker.postMessage(intstr);
+        worker.onmessage=function(event){
+            if(event.data!=''){
+                var j;
+                var k;
+                var tr;
+                var td;
+                var inArray = event.data.split(';');
+                var table = document.getElementById('table');
+                for(var i=0 ;i<inArray.length;i++){
+                    j=parseInt(i/10,0);
+                    k=i%10;
+                    if(k==0){
+                        tr=document.createElement('tr');
+                        tr.id='tr'+j;
+                        table.appendChild(tr);
+                    }else{
+                        tr=document.getElementById('tr'+j);
+                    }
+                    td=document.createElement('td');
+                    tr.appendChild(td);
+                    td.innerHTML = intArray[j*10+k];
+                    td.style.backgroundColor="blue";
+                    td.style.color='white';
+                    td.width='30';
+                }
+            }
+        };
+    </script>
+</head>
+<body>
+<h1>随机100个数字，抽取3的倍数显示在表格中</h1>
+<table id="table"></table>
+</body>
+</html>

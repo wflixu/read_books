@@ -1,0 +1,29 @@
+function walkDOM(n){
+	do {
+		console.log(n);
+		if(n.hasChildNodes()){
+			walkDOM(n.firstChild);
+		}
+	}while(n=n.nextSibling);
+}
+//test
+walkDOM(document.body);
+
+function doWith(dom){
+   console.log(dom);
+}
+var j=0;
+function walkDom (dom,doWith){
+	console.log(j++);
+	doWith(dom);
+	for(var i = 0; i<dom.childNodes.length;i++){
+		if(dom.childNodes[i].hasChildNodes()){
+			walkDom(dom.childNodes[i],doWith);
+		}
+	}
+
+}
+
+//test
+walkDom(document.body,doWith);
+walkDom(document.documentElement,callback);

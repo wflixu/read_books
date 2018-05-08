@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <title>23-2订单信息</title>
+    <link rel="stylesheet" href="23-2.css"/>
+    <script src="23-2.js"></script>
+</head>
+<body>
+<section>
+    <header id="div_head_title_big">
+        编辑订单信息
+    </header>
+    <form id="form1" action="#">
+        <table cellspacing="1" cellpadding="0">
+            <tbody>
+            <tr>
+                <td id="td_title_1"><span>*</span>订单编号！</td>
+                <td id="td_content_1">
+                    <input type="required" name="tdxCode" id="tdxCode" maxlength="8"/>
+                </td>
+                <td id="td_title_2"><span>*</span>订单日期</td>
+                <td id="td_content_2">
+                    <input type="date" name="tdxDate" id="tdxDate"/>
+                </td>
+                <td id="td_title_3"><span>*</span>商品编号</td>
+                <td id="td_content_3">
+                    <input type="required" name="tdxGoodsCode" id="tdxGoodsCode" maxlength="12"/>
+                    <input type="button" name="btnSearchGoods" id="btnSearchGoods" value="搜"
+                           onclick="btnSearchGoods_onClick();"/>
+
+                </td>
+            </tr>
+            <tr>
+                <td id="td_title_4">商标</td>
+                <td id="td_content_4">
+                    <input type="text" name="tdxBrand" id="tdxBrand" maxlength="3" onblur="tdxBrand_onBlur();"/>
+                    <input type="button" name="btnSearchBrand" id="btnSearchBrand" value="搜"
+                           onclick="btnSearchBrand_onClick();"/>
+                    <input type="text" name="tdxBrandName" id="tdxBrandName" readonly/>
+                </td>
+                <td id="td_title_5">数量</td>
+                <td id="td_content_5">
+                    <input type="number" name="tdxNum" id="tdxNum" maxlength="6" value="0" onblur="tdxNum_onBlur();"
+                           onkeypress=""/>
+                </td>
+                <td id="td_title_6"> 单价</td>
+                <td id="td_content_6">
+                    <input type="text" name="tdxPrice" id="tdxPrice" maxlength="6" value="0"
+                           onblur="tdxPrice_onBlur();"/>
+                </td>
+            </tr>
+            <tr>
+                <td id="td_title_7">金额</td>
+                <td id="td_content_7">
+                    <input type="text" name="tdxMoney" id="tdxMoney" readonly="readonly" value="0"/>
+                </td>
+                <td id="td_title_8">负责人</td>
+                <td id="td_content_8">
+                    <input type="text" name="tdxPerson" id="tdxPerson" maxlength="3"
+                           onblur="tdxPerson_onBlur();"/>
+                    <input type="button" name="btnSearchPerson" id="btnSearchPerson" value="搜"
+                           onclick="btnSearchPerson_onClick();"/>
+                    <input type="text" name="tdxPersonName" id="tdxPersonName" readonly="readonly"/>
+                </td>
+                <td id="td_title_9">
+                    生产单位
+                </td>
+                <td id="td_content_9">
+                    <input type="text" name="tdxProduct" id="tdxProduct" maxlength="3" onblur="tdxProduct_onBlur();"/>
+                    <input type="button" name="btnSearchPerson" id="btnSearchProduct" value="搜"
+                           onclick="btnSearchProduct_onClick();"/>
+                    <input type="text" name="tdxProductName" id="tdxProductName" readonly="readonly"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div id="buttonDiv">
+            <input type="button" name="btnNew" id="btnNew" value="新增" onclick="btnNew_onClick()"/>
+            <input type="button" id="btnAdd" name="btnAdd" value="追加" onclick="btnAdd_onClick();"/>
+            <input type="button" id="btnUpdate" name="btnUpdate" value="修改" disabled onclick="btnUpdate_onClick()"/>
+            <input type="button" id="btnDelete" name="btnDelete" value="删除" disabled onclick="btnDelete_onClick()"/>
+            <input type="button" id="btnClear" name="btnClear" value="清除" onclick="btnClear_onClick()"/>
+        </div>
+    </form>
+</section>
+<section>
+    <header id="div_head_title">
+        订单信息一览表
+    </header>
+    <div id="infoTable">
+        <table id="datatable">
+            <tr>
+                <th>订单编号</th>
+                <th>订单日期</th>
+                <th>商品编号</th>
+                <th>商标</th>
+                <th>数量</th>
+                <th>单价</th>
+                <th>金额</th>
+                <th>负责人</th>
+                <th>生产单位</th>
+            </tr>
+        </table>
+        <input type="hidden" id="hiddenBrand"/>
+        <input type="hidden" id="hiddenPerson"/>
+        <input type="hidden" id="hiddenProduct"/>
+    </div>
+</section>
+</body>
+</html>

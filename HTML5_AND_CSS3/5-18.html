@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>5-17canvas</title>
+
+</head>
+<body >
+<h1>canvas 元素示例</h1>
+<canvas id="canvas" width="400" height="300">
+
+</canvas>
+<script >
+
+    function draw(id){
+        var canvas=document.getElementById(id);
+        if(canvas==null){
+            return false;
+        }
+        var context = canvas.getContext('2d');
+
+        context.fillStyle="#EEF";
+        context.fillRect(0,0,400,300);
+
+        var img= new Image();
+        img.src="https://img1.doubanio.com/lpic/s4696737.jpg";
+        img.onload=function(){
+            context.fillStyle = context.createPattern(this, "repeat");
+            context.fillRect(0,0,4000,3000);
+        }
+    }
+    window.onload=function (){
+        draw("canvas");
+    }
+
+</script>
+</body>
+</html>

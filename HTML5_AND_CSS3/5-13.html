@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>5-11canvas</title>
+
+</head>
+<body >
+<h1>canvas 元素示例</h1>
+<canvas id="canvas" width="400" height="300">
+
+</canvas>
+<script >
+
+    function draw(id){
+        var canvas=document.getElementById(id);
+        if(canvas==null){
+            return false;
+        }
+        var context = canvas.getContext('2d');
+        var opt = ["source-atop","source-in","source-out","source-over","destination-atop","destination-in","destination-out","destination-over","lighter","copy","xor"];
+        i=8;
+        context.fillStyle ="red";
+        context.fillRect(10,10,60,60);
+        context.globalCompositeOperation=opt[10];
+        context.beginPath();
+        context.fillStyle = "blue";
+        context.arc(60,60,30,0,Math.PI*2,false);
+        context.fill();
+    }
+    window.onload=function (){
+        draw("canvas");
+    }
+
+</script>
+</body>
+</html>

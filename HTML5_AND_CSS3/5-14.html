@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>5-14canvas</title>
+
+</head>
+<body >
+<h1>canvas 元素示例</h1>
+<canvas id="canvas" width="400" height="300">
+
+</canvas>
+<script >
+
+    function create5star(context){
+        var n= 0,dx=100,dy= 0,s=50;
+        context.beginPath();
+        context.fillStyle = "rgba(255,5,5,0.25)";
+        var x =Math.sin(0);
+        var y = Math.cos(0);
+        var dig = Math.PI/5*4;
+        for(var i=0;i<5;i++){
+            var x = Math.sin(i*dig);
+            var y = Math.cos(i*dig);
+            context.lineTo(dx+x*s,dy+y*s);
+        }
+        context.closePath();
+    }
+    function draw(id){
+        var canvas=document.getElementById(id);
+        if(canvas==null){
+            return false;
+        }
+        var context = canvas.getContext('2d');
+        context.fillStyle="#EEF";
+        context.fillRect(0,0,400,300);
+        context.shadowOffsetX=10;
+        context.shadowOffsetY=10;
+        context.shadowColor = "rgba(100,100,100,0.5)";
+        context.shadowBlur = 7.5;
+
+        context.translate(200,50);
+        context.fillStyle = 'rgba(255,0,0,0.25)';
+        for(var i =0 ;i<50;i++){
+            context.translate(25,25);
+            context.scale(0.95,0.95);
+            context.rotate(Math.PI/10);
+            create5star(context);
+            context.fill();
+        }
+    }
+    window.onload=function (){
+        draw("canvas");
+    }
+
+</script>
+</body>
+</html>

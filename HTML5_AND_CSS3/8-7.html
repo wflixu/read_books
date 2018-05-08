@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html manifest="global.manifest">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>applicationCache流程示例</title>
+</head>
+<script>
+    function init(){
+        var msg = document.getElementById('msg');
+        applicationCache.addEventListener("checking",function(){
+            msg.innerHTML='checking';
+        },true);
+        applicationCache.addEventListener("noupdate",function(){
+            msg.innerHTML='noupdate';
+        },true);
+        applicationCache.addEventListener("downloading",function(){
+            msg.innerHTML='downloading';
+        },true);
+        applicationCache.addEventListener("updateready",function(){
+            msg.innerHTML='updateready';
+        },true);
+        applicationCache.addEventListener("cached",function(){
+            msg.innerHTML='cached';
+        },true);
+        applicationCache.addEventListener("error",function(){
+            msg.innerHTML='error';
+        },true);
+    }
+</script>
+<body onload="init()">
+<h1>applicationCache应用示例</h1>
+<p id="msg"></p>
+<script>
+
+</script>
+</body>
+</html>

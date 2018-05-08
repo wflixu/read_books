@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>7-3</title>
+    <script>
+        function saveStorage(id){
+            var data = document.getElementById(id).value;
+            var time =  new Date().getTime();
+            localStorage.setItem(time,data);
+            alert('数据已经保存！');
+            loadStorage('msg');
+            document.getElementById(id).value = '';
+        }
+        function loadStorage(id){
+            var result = '<table border="1">';
+            for(var i=0 ;i<localStorage.length;i++){
+                var key = localStorage.key(i);
+                var value = localStorage.getItem(key);
+                var date = new Date();
+                date.setTime(key);
+                var datestr = date.toGMTString();
+                result+='<tr><td>'+value+'</td><td>'+datestr+'</td></tr>';
+            }
+            result += '</table>';
+            var target = document.getElementById(id);
+            target.innerHTML = result;
+        }
+        function clearStorage(){
+            localStorage.clear();
+            alert('全部数据被清除！');
+            loadStorage('msg');
+        }
+    </script>
+</head>
+<body>
+<h1>简单web留言本</h1>
+<textarea name="demo" id="demo" cols="30" rows="10"> </textarea>
+<br/>
+<input type="button" value="追加" onclick="saveStorage('demo');"/>
+<input type="button" value="初试化" onclick="clearStorage('msg');"/>
+<p id="msg"></p>
+</body>
+</html>

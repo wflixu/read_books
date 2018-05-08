@@ -1,0 +1,31 @@
+@charset "UTF-8";
+header, article, section, footer, nav, aside {
+    display: block;
+}
+body{
+    font-weight:normal;
+    font-size:12px;
+    color:#666;
+}
+#webtitle{
+    display: -moz-box;
+    display: -webkit-box;
+    -moz-box-pack:center;
+    -webkit-box-pack:center;
+    width:100%;
+}
+#sectiontop1 {
+    margin-top:10px;
+    display:-webkit-box;
+    width:900px;
+}
+#topleft{
+    width:600px;
+}
+#imglogo1 {
+    width:600px;
+    height:74px;
+}
+#topmid {
+
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- meta使用viewport以确保页面可自由缩放 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filelist 及file</title>
+</head>
+<body>
+    <input type="file" id="fil" multiple size="80">
+    <input type="button" onclick="showFileName();" value="文件上传"><br>
+    <input type="file" id="fil1" >
+    <input type="button" value="显示文件信息" onclick="showFileType();"><br>
+    字节长度：<span id="size"></span><br>
+    MINE类型：<span id="type"></span>
+    <hr>
+    <input type="file" id="fil2"><br>
+    <input type="button" value="文件上传" onclick="fileUpload();">
+    <script>
+    	function fileUpload(){
+    		var file;
+    		for(var i = 0;i<document.getElementById("fil2").files.length;i++){
+    			file=document.getElementById("fil2").files[i];
+    			if(!/image\/\w+/.test(file.type)){
+    				alert(file.name+"不是图像 文件");
+    				break;
+    			}else{
+    				alert(file.name+"文件已经上传！");
+    			}
+    		}
+    	}
+    	function showFileName(){
+    		var file;
+    		for(var i=0;i<document.getElementById("fil").files.length;i++){
+    			file=document.getElementById('fil').files[i];
+    			alert(file.name);
+    		}
+    	}
+    	function showFileType(){
+    		var file;
+    		file=document.getElementById('fil1').files[0];
+    		var size = document.getElementById('size');
+    		size.innerHTML = file.size;
+    		var type = document.getElementById("type");
+    		type.innerHTML = file.type;
+    	}
+    </script>
+</body>
+</html>

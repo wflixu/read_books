@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- meta使用viewport以确保页面可自由缩放 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>form表单</title>
+</head>
+<body>
+    <form action="" name="form1">
+    	<label for="username">姓名</label>
+    	<input type="text" name=username id="username" required="true"><br>
+    	<label for="age">年龄</label>
+		<input type="number" name="age" id="age" min="0" max="100"><br>
+		<label for="birthday">生日</label>
+		<input type="date" name="birthday" id="birthday"><br>
+		<label for="email">email</label>
+		<input type="email" name="email" id="email" required> <br>
+		<label for="url">个人主页</label>
+		<input type="url" name="url" id="url"><br>
+		<label for="memo">个人简介</label>
+		<textarea name="memo" id="memo" cols="30" rows="10"></textarea><br>
+
+		<input type="range" name="ran" id="ran" min="0" max="100" step="5">
+		<output onforminput="value=ran.value">50</output>
+		<input type="submit">
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <canvas id="canvas" width="800" height="600" style="border:1px solid #999;"> </canvas>
+    <script>
+        window.onload = function() {
+            var can = document.getElementById('canvas');
+            var ctx = can.getContext("2d");
+            ctx.fillStyle = 'red';
+            ctx.fillRect(50, 50, 200, 100);
+            // 线性渐变
+            var gradient = ctx.createLinearGradient(0, 0, 100, 0);
+            gradient.addColorStop(0, "black");
+            gradient.addColorStop(1, "white");
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 100, 100);
+        }
+    </script>
+</body>
+
+</html>

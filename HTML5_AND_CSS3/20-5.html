@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>20-5</title>
+</head>
+<body>
+<div id="container">
+    <div id="text-a">示例文字A</div>
+    <div id="text-b">示例文字B</div>
+    <div id="text-c">示例文字C</div>
+</div>
+<style>
+    #container{
+        display:-moz-box;
+        display:-webkit-box;
+        border:solid 5px blue;
+        -moz-box-orient: vertical;
+        -webkit-box-orient: vertical;
+        width:500px;
+        height:300px;
+    }
+
+    #text-a{
+        background-color: orange;
+    }
+    #text-b {
+        background-color: yellow;
+        -webkit-box-flex: 1;
+    }
+    #text-c {
+        background-color: limegreen;
+    }
+    #text-a, #text-b, #text-c {
+        box-sizing: border-box;
+        font-size:1.5em;
+        font-weight: bold;
+    }
+</style>
+</body>
+</html>

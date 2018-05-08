@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<p>
+    <label for="file">
+        选择一个文件：
+    </label>
+    <input type="file" id="file">
+    <input type="button" value="读取图像" onclick="readFile()">
+</p>
+<div id="result">
+
+</div>
+<script>
+    var result=document.getElementById("result");
+    var file = document.getElementById("file");
+    if(typeof FileReader == 'undefined'){
+        result.innerHTML = "<p>抱歉，您的浏览器不支持FileReader<p/>";
+        file.setAttribute("disabled","disabled");
+    }
+    function readFile(){
+        var file = document.getElementById("file").files[0];
+        var reader = new FileReader();
+        reader.onload = function(e){
+            console.log('onload');
+            var result=document.getElementById("result");
+            result.innerHTML = "<img src='"+this.result+"'>";
+        }
+        reader.onprogress = function(e ){
+            console.log('progress');
+        }
+        reader.onabort = function(e){
+            console.log('abort');
+        }
+        reader.onerror = function(e) {
+            console.log("error");
+        }
+        reader.onloadstart = function(e){
+            console.log("loadstart");
+        }
+        reader.onloadend = function (e){
+            console.log("loadend");
+        }
+        reader.readAsDataURL(file);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>5-11canvas</title>
+
+</head>
+<body >
+<h1>canvas 元素示例</h1>
+<canvas id="canvas" width="400" height="300">
+
+</canvas>
+<script >
+
+    function create5star(context){
+        var n= 0,dx=100,dy= 0,s=50;
+        context.beginPath();
+        context.fillStyle = "rgba(255,5,5,0.25)";
+        var x =Math.sin(0);
+        var y = Math.cos(0);
+        var dig = Math.PI/5*4;
+        for(var i=0;i<5;i++){
+            var x = Math.sin(i*dig);
+            var y = Math.cos(i*dig);
+            context.lineTo(dx+x*s,dy+y*s);
+        }
+        context.closePath();
+    }
+    function draw(id){
+        var canvas=document.getElementById(id);
+        if(canvas==null){
+            return false;
+        }
+        var context = canvas.getContext('2d');
+        var colors=["red","orange","yellow","green","blue","navy","purple"];
+        context.lineWidth=10;
+        context.transform(1,0,0,1,100,0);
+        for(var i =0 ;i<colors.length;i++){
+            context.transform(1,0,0,1,0,10);
+            context.strokeStyle=colors[i];
+            context.beginPath();
+            context.arc(50,100,100,0,Math.PI,true);
+            context.stroke();
+        }
+    }
+    window.onload=function (){
+        draw("canvas");
+    }
+
+</script>
+</body>
+</html>

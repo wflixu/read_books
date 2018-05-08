@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>13-20</title>
+    <style>
+        input[type="text"]:read-only{
+            background-color:gray;
+        }
+        input[type="text"]:read-write{
+            background-color:greenyellow;
+        }
+        input[type="text"]:-moz-read-only{
+            background-color:#0000ff;
+        }
+        input[type="text"]:-moz-read-write{
+            background-color:lime;
+        }
+        input[type="checkbox"]:checked{
+               outline: 2px solid blue;
+           }
+        input[type="checkbox"]:default{
+            outline:1px solid darkgreen;
+        }
+        input[type="radio"]:indeterminate{
+            outline:1px solid #00fa00;
+        }
+        p::selection{
+            background-color: #000099;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+<form action="#">
+    <p>姓名： <input type="text" name="name" /></p>
+    <p>地址：<input type="text" name="addres" readonly="readonly" value="西安市高新区"/></p>
+    <p>兴趣爱好：<input type="checkbox" checked value="阅读"/>
+        <input type="checkbox" value="游戏"/>
+        <input type="checkbox" value="看电影"/>
+        <input type="checkbox" value="上网"/>
+    </p>
+    <p>
+        <input type="radio" name="radio" onchange="radio_onchange();" id="radio"/>可用</radio>
+        <input type="radio" name="radio" onchange="radio_onchange();"/>不可用</radio><br/>
+    </p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet at, consequatur distinctio ducimus in inventore ipsam, itaque nihil qui rem sed soluta tempore voluptatem. Minima quae quam saepe sed sint!</p>
+</form>
+</body>
+</html>

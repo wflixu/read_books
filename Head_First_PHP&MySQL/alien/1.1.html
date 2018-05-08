@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>abduction</title>
+</head>
+
+<body class="container">
+    <p class="h2">
+        Share you story of alien abduction:
+    </p>
+    <hr>
+    <form action="./data/report.php" method="post" class="form-horizontal ">
+        <div class="form-group">
+            <label for="firstname" class="control-label col-sm-2">First name:</label>
+            <div class="col-sm-10">
+                <input type="text" id="firstname" name="firstname" class="form-control">
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="lastname" class="control-label col-sm-2">Last name:</label>
+            <div class="col-sm-10">
+                <input type="text" id="lastname" name="lastname" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="control-label col-sm-2">What is your email address?</label>
+            <div class="col-sm-10">
+                <input type="text" id="email" name="email" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="whenithappened" class="control-label col-sm-2"> When did it happen? </label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" id="whenithapened" name="whenithappened">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="howlong" class="control-label col-sm-2"> How long ware you gone? </label>
+            <div class="col-sm-10">
+                <input type="text" id="howlong" class="form-control" name="howlong">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="howmany" class="control-label col-sm-2">How many did you see?</label>
+            <div class="col-sm-10">
+                <input type="text" id="howmany" name="howmany" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="aliendescription" class="control-label col-sm-2">Describe them:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="description" name="description">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="whattheydid" class="control-label col-sm-2">What did they do to you?</label>
+            <div class="col-sm-10">
+                <input type="text" id="whattheydid" name="whattheydid" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-lable col-sm-2" for="fangspotted">Have you seen my dog fang?</label>
+            <div class="radio col-sm-2">
+                <label>
+                 <input type="radio" class="form-control" id="fangspotted" name="fangspotted" value="yes">   YES
+             </label>
+            </div>
+            <div class="radio col-sm-2">
+                <label>
+                <input type="radio" id="fangspotted" class="form-control" name="fangspotted" value="no">
+                No
+             </label>
+            </div>
+
+        </div>
+        <div class="img">
+            <img width="80" src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1497020047&di=b29aabe37536cf8374c195177e5299bf&src=http://pic16.nipic.com/20110831/8027526_145847893000_2.jpg" alt="">
+        </div>
+        <div class="form-group">
+            <label for="other" class="control-label col-sm-2">Anythings you want to add?</label>
+
+            <div class="col-sm-10">
+                <textarea type="text" id="other" name="other" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="form-group"> <input type="submit" value="report" name="submit" class="btn btn-primary"> </div>
+    </form>
+
+</body>
+
+</html>

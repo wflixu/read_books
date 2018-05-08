@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>6-5</title>
+    <script>
+        function playOrPauseVideo (){
+            var videourl = document.getElementById("videourl").value;
+            var video = document.getElementById('video');
+            video.addEventListener('timeupdate',function(){
+                var timeDisplay = document.getElementById('time');
+                timeDisplay.innerHTML= Math.floor(video.currentTime)+'/'+Math.floor(video.duration)+'秒';
+
+            })
+            if(video.paused){
+                if(videourl!=video.src){
+                    video.src = videourl;
+                    video.load();
+                }else{
+                    video.play();
+                }
+                document.getElementById('playButton').value="暂停";
+            }else{
+                video.pause();
+                document.getElementById('playButton').value = '播放';
+            }
+        }
+    </script>
+</head>
+<body>
+<video src="ls/back.ogv" id="video" width="400" height="300" autoplay loop="loop"></video>
+<br/>
+视频地址：<input type="text" id="videourl" value="ls/back.ogv"/>
+<input type="button" id="playButton" onclick="playOrPauseVideo()" value="播放"/>
+<span id="time"></span>
+<script>
+    playOrPauseVideo();
+</script>
+</body>
+</html>

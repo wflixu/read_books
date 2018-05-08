@@ -1,0 +1,125 @@
+@charset "UTF-8";
+body {
+    margin-left:0;
+    margin-top:0;
+}
+header {
+    font-size:14px;
+    font-weight:bold;
+    color:white;
+    background-color:#7088AD;
+    text-align:left;
+    padding:10px;
+    display:block;
+    width:100%;
+}
+[id^=td_title] {
+    font-size:12px;
+    color:#333;
+    background-color:#e6e6e6;
+    width:12%;
+    text-align:right;
+    padding-right:5px;
+}
+[id^=td_content] {
+    width:21%;
+    height:22px;
+    background-color:#fafafa;
+    text-align:left;
+    padding-left:2px;
+}
+span {
+    color:#f00;
+}
+input {
+    width:95%;
+    border-style:solid;
+    border-top-color:#426c7c;
+    border-bottom-color:#426c7c;
+    border-left-color:#ccc;
+    border-right-color:#ccc;
+    border:1px solid #0066cc;
+    height:18px;
+}
+[id^=btnSearch] {
+    width:20px;
+    color: #2f37ff;
+}
+input:read-only {
+    background-color:yellow;
+}
+#tdxNum, #tdxPrice, #tdxMoney {
+    text-align:right;
+}
+#tdxGoodsCode {
+    width:85%;
+}
+#tdxBrand, #tdxPerson, #tdxProduct {
+    width:20px;
+}
+[id$=\Name]{
+    width:60%;
+}
+div {
+    text-align:right;
+}
+#buttonDiv {
+    width:100%;
+}
+div input[type="button"] {
+     font-size:12px;
+     width:68px;
+     height:20px;
+     cursor: pointer;
+     border:none;
+     font-family: "宋体";
+     background-color: blue;
+     color:#fff;
+ }
+div input[type="button"]:hover {
+    cursor: pointer;
+}
+div input[type="button"]:disabled{
+    color:#aaa;
+}
+div input [type="reset"] {
+    font-size:12px;
+    width:68px;
+    height:20px;
+    cursor: hand;
+    border:none;
+    font-family: "宋体";
+    background-color: white;
+    color:#666;
+}
+#tdxSearchCode {
+    width:100%;
+}
+div table {
+    width:100%;
+    background-color: white;
+    cellpadding:1;
+    cellspacing: 1;
+    font-size:12px;
+    text-align:center;
+}
+div table th {
+    height:22px;
+    background-color:#7088AD;
+    color:#fff;
+    width:8%;
+}
+div table tr {
+    height:30px;
+}
+div table tr:nth-child(even) {
+    background-color:#e6e6e6;
+}
+div table tr:nth-child(1){
+    width:15%;
+}
+div table tr:nth-child(2){
+    width:15%;
+}
+
+
