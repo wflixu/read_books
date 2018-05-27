@@ -6,6 +6,16 @@ function walkDOM(n){
 		}
 	}while(n=n.nextSibling);
 }
+
+// 只遍历元素
+function walkDOM (el){
+	do{
+		console.log(el);
+		if(el.children.length>0){
+			walkDOM(el.firstElementChild);
+		}
+	}while(el=el.nextElementSibling);
+}
 //test
 walkDOM(document.body);
 

@@ -1,6 +1,7 @@
 function log(msg) {
     console.log(msg);
 }
+ log(log.name)
 //rest参数
 // function add(...values) {
 //     let sum = 0;
@@ -40,16 +41,16 @@ function log(msg) {
 // log(factorial(5, 1));
 // log(factorial(100, 1));
 
-function currying(fn, n) {
-    return function(m) {
-        return fn.call(this, m, n);
-    }
-}
+// function currying(fn, n) {
+//     return function(m) {
+//         return fn.call(this, m, n);
+//     }
+// }
 
-function tailFactorial(n, total) {
-    if (n === 1) return total;
-    return tailFactorial(n - 1, n * total);
-}
+// function tailFactorial(n, total) {
+//     if (n === 1) return total;
+//     return tailFactorial(n - 1, n * total);
+// }
 
-const factorial = currying(tailFactorial, 1);
-log(factorial(5));
+// const factorial = currying(tailFactorial, 1);
+// log(factorial(5));
