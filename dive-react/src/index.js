@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import  ClickCounter from './components/ClickCounter'
+import  ControlPanel from './components/ControlPanel'
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<ClickCounter />, document.getElementById('root'));
+ReactDOM.render(<ControlPanel />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
