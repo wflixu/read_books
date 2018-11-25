@@ -1,23 +1,47 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import CountDown from './components/CountDown'
-
+const cityCode = 101010100;
 
 class App extends Component {
+  constructor() {
+    super(...arguments);
+
+    this.state = {weather: null};
+  }
+
+  componentDidMount() {
+    const apiUrl = `/data/cityinfo/${cityCode}.html`;
+    fetch(apiUrl).then((response) => {
+      if (response.status !== 200) {
+        throw new Error('Fail to get response with status ' + response.status);
+      }
+      console.log('11111',response);
+      
+      response.json().then((responseJson) => {
+        console.log('222',responseJson);
+        
+        this.setState({weather: responseJson.weatherinfo});
+      }).catch((error) => {
+        this.setState({weather: null});
+      });
+    }).catch((error) => {
+      this.setState({weather: null});
+    });
+  }
 
   render() {
-    
+    if (!this.state.weather) {
+      return <div>暂无数据</div>;
+    }
+
+    const {city, weather, temp1, temp2} = this.state.weather;
+
     return (
-      <div className="App">
-        <h2>chap06 countdown</h2>
-        <CountDown startCount={20}>
-            {
-              (count)=> <div>{count>0? count:'新年快乐！'}</div>
-            }
-        </CountDown>
+      <div>
+        {city} {weather} 最低气温 {temp1} 最高气温 {temp2}
       </div>
-    );
+    )
   }
 }
 
