@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ControlPanel from './views/ControlPanel';
+import TodoApp from './TodoApp';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 
 import store from './Store.js';
-import Provider from './Provider.js';
+import {Provider} from 'react-redux';
 
 
 ReactDOM.render(
     <Provider store={store}>
-      <ControlPanel />
+      <TodoApp />
     </Provider>,
     document.getElementById('root')
   );
