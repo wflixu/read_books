@@ -1,38 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-import UserInfo from './component/UserCard'
-import {After} from './component/After';
+import CountDown from './components/CountDown'
+
 
 class App extends Component {
 
   render() {
     
-    const user = {
-      name:'tom',
-      age:17,
-      agender:'man'
-    }
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-        <UserInfo {...user}/>
-        <hr/>
-        <After {...user}/>
+        <h2>chap06 countdown</h2>
+        <CountDown startCount={20}>
+            {
+              (count)=> <div>{count>0? count:'新年快乐！'}</div>
+            }
+        </CountDown>
       </div>
     );
   }
