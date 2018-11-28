@@ -7,7 +7,6 @@
     "@svgr/webpack": "2.4.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
-    "babel-jest": "23.6.0",
     "babel-loader": "8.0.4",
     "babel-plugin-named-asset-import": "^0.2.3",
     "babel-preset-react-app": "^6.1.0",
@@ -46,6 +45,7 @@
     "react-redux": "^5.1.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
     "resolve": "1.8.1",
     "sass-loader": "7.1.0",
     "style-loader": "0.23.0",
@@ -71,6 +71,7 @@
     "not op_mini all"
   ],
   "jest": {
+    "setupTestFrameworkScriptFile":"<rootDir>config/jest/setupTests.js",
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
       "!src/**/*.d.ts"
@@ -81,7 +82,7 @@
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
+      "<rootDir>/test/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
     ],
     "testEnvironment": "jsdom",
     "testURL": "http://localhost",
@@ -118,6 +119,13 @@
   },
   "proxy": "http://www.weather.com.cn/",
   "devDependencies": {
-    "prop-types": "^15.6.2"
+    "babel-jest": "^23.6.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "prop-types": "^15.6.2",
+    "react-addons-test-utils": "^15.6.2",
+    "react-test-renderer": "^16.6.3",
+    "redux-mock-store": "^1.5.3",
+    "sinon": "^7.1.1"
   }
 }
