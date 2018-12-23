@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node src/chap11.js"
+    "test": "node src/chap12.js"
   },
   "keywords": [],
   "author": "",
