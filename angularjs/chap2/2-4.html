@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./../lib/angular.js"></script>
+    <title>2-4</title>
+</head>
+
+<body>
+    <div ng-controller="myCtrl">
+
+        <div>outer: {{sum2}}</div>
+        <ul>
+            <li ng-repeat="item in arr track by $index">
+                {{item}}
+                <button ng-click="$parent.sum2=sum2+item">increase</button>
+                <div>inner: {{sum2}}</div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope,$timeout) {
+            $scope.arr = [1, 2, 3];
+        });
+
+    </script>
+</body>
+
+</html>

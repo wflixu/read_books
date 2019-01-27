@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>timeingsenseTest</title>
+</head>
+<body>
+    <div>
+        <div>测试你对时间的感觉</div>
+        <button id="hold-me">按住我3秒钟然后松手</button>
+        <div>你的时间：<span id="hold-time"></span>毫秒</div>
+    </div>
+    <script>
+       var startTime ;
+       var button = document.querySelector('#hold-me');
+       var time = document.querySelector('#hold-time');
+       button.addEventListener('mousedown',function(){
+           startTime = new Date();
+       });
+       button.addEventListener('mouseup',function(){
+           if(startTime){
+               const elapsedMilliseconds = new Date() -startTime;
+               startTime = null;
+               time.innerHTML = elapsedMilliseconds;
+           }
+       })
+    </script>
+</body>
+</html>
