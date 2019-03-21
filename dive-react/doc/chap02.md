@@ -36,8 +36,28 @@ prop ,state
         * 初始化state
         * 成员函数绑定this
    * componentWillMount
+      可以在服务端调用
    * render
    * componentDidMount
+    render函数被调用完之后，componentDidMount函数并不是会被立刻调用，componentDidMount被调用的时候，render函数返回的东西已经引发了渲染，组件已经被“装载”到了DOM树上。不可以再服务端调用
  2. 更新过程
+    * componentWillReceiveProps（nextProps）
+    实际上，只要是父组件的render函数被调用，在render函数里面被渲染的子组件就会经历更新过程，不管父组件传给子组件的props有没有改变，都会触发子组件的componentWill-ReceiveProps函数。
+
+    * shouldComponentUpdate(nextProps,nextState)
+
+    * componentWillUpdate
+    * render
+    * componentDidUpdate
  3. 卸载过程
+  * omponentWillUnmount
+
+## 组件向外传递数据
+通过prop 属性为函数，传递给子组件，子组件条用prop 函数更新父组件的数据。
+
+
+## react组件state和prop的局限
+
+* 数据重复如何保持数据的一致性
+* 顶层组件传递数据到最底层，通过prop 方式，中间组件不需要prop,但必须支持prop 属性，违反了低耦合的设计要求。
 
