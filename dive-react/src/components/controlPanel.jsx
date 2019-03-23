@@ -1,41 +1,23 @@
-import React from 'react';
-import store from '../Store';
-import * as Actions from '../counters/actions';
+import React, { Component } from 'react';
+import Counter from './Counter';
+import Summary from './Summary';
 
-import Counter from './counter';
+const style = {
+  margin: '20px'
+};
 
-export default class ControlPanel extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state=this.getOwnState();
-        this.onChange = this.onChange.bind(this);
-    }
- 
-    getOwnState() {
-        const {first,second,third} = store.getState();
-        return {
-            sum: first+second+third
-        }
-    }
-    onChange() {
-        this.setState(this.getOwnState());
-    }
-    componentDidMount() {
-        store.subscribe(this.onChange);
-    }
-    componentWillUnmount() {
-        store.unsubscribe(this.onChange);
-    }
-
-
-    render(){
-        return(
-            <div>
-                <Counter caption="first" />
-                <Counter caption="second" />
-                <Counter caption="third" />
-                <h3>sum: {this.state.sum}</h3>
-            </div>
-        )
-    }
+class ControlPanel extends Component {
+  render() {
+    return (
+      <div style={style}>
+        <Counter caption="first" />
+        <Counter caption="second" />
+        <Counter caption="third" />
+        <hr/>
+        <Summary />
+      </div>
+    );
+  }
 }
+
+export default ControlPanel;

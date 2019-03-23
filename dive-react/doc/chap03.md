@@ -26,5 +26,31 @@ redux 的三个基本原则
 * 数据改变只通过纯函数完成
 
 
+组件 Context
+
+?
+
+
+React-Redux
+
+提供2个功能，
+* 提供包含store 的context Provider  
+```
+   
+```
+Provider 要求 store 是一个 带有 subscribe dispatch getState 三个函数的对象，
+ 使用 redux createStore 创建 store .
+ createStore(reducer, initValues);
+
+* 连接容器组件和傻瓜组件
+
+
+
+
+
+
+
+
+
 
 
