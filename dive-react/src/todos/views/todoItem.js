@@ -22,7 +22,7 @@ class TodoItem extends React.Component {
           textDecoration: completed ? 'line-through' : 'none'
         }}
       >
-        <input className="toggle" type="checkbox" checked={completed ? "checked" : ""} readOnly onClick={onToggle} />
+        <input className="toggle" type="checkbox" checked={completed ? "checked" : ""}  onClick={onToggle} />
         <label className="text">{text}</label>
         <button className="remove" onClick={onRemove}>×</button>
       </li>

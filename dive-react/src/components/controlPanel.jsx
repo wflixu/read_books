@@ -7,6 +7,12 @@ const style = {
 };
 
 class ControlPanel extends Component {
+   constructor(props,context){
+      super(props,context);
+
+      console.log(this.context);
+   }
+
   render() {
     return (
       <div style={style}>
