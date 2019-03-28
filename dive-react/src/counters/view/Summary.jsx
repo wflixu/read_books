@@ -11,9 +11,10 @@ function Summary({value}) {
 
 function mapStateToProps(state) {
   let sum = 0;
-  for (const key in state) {
-    if (state.hasOwnProperty(key)) {
-      sum += state[key];
+  const {counters} = state;
+  for (const key in counters) {
+    if (counters.hasOwnProperty(key)) {
+      sum += counters[key];
     }
   }
   return {value: sum};

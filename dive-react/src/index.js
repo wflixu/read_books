@@ -7,12 +7,6 @@ import './index.css'
 
 import App from './App';
 
-
-// import Provider from './Provider';
-// import App from './TodoApp'
-// import ControlPanel from './components/controlPanel';
-// import App from './context/App';
-// import MyContext from './context/MyContext';
 import initState from './Store';
 
 const store = configureStore(initState);

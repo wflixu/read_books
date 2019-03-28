@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router'
 import { ConnectedRouter } from 'connected-react-router'
 import { Link } from 'react-router-dom'
 import Home from './components/Home';
-import ControlPanel from './components/ControlPanel';
+import ControlPanel from './pages/ControlPanel';
 import Todo from './pages/TodoApp';
 import NoMatch from './components/NoMatch';
 

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import * as Actions from '../counters/actions.js';
+import * as Actions from '../actions.js';
 import {connect} from 'react-redux';
 
 const buttonStyle = {

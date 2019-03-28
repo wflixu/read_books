@@ -1,11 +1,6 @@
 import * as ActionTypes from './actionTypes';
 
-export default (state = {
-    'first': 0,
-    'second': 10,
-    'third': 20
-}
-    , action) => {
+export default (state = {} , action) => {
     console.log(state);
     const { counterCaption } = action;
     switch (action.type) {
