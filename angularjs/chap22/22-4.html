@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./../lib/angular.js"></script>
+    <script src="./../lib/angular-route.js"></script>
+    <script src="./../lib/angular-animate.js"></script>
+    <title>22-5 ng-repeat 动画</title>
+    <style>
+        .test{
+            transition: all 2s;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div ng-controller="MyController">
+        <button ng-click="sayHello()">Hello</button>
+        <button ng-click="add()">add</button>
+
+
+        <ul>
+            <li class="fade-in" ng-repeat="r in rooms">
+                {{r}}
+            </li>
+        </ul>
+    </div>
+</body>
+
+<script>
+    angular
+        .module('myApp', ['ngAnimate'])
+        .animation('.fade-in',function(){
+            return {
+                enter:function(element,done){
+                    var op = 0,timeout,
+                    animateFn = function(){
+                        op+=10;
+                        element.css('opacity',op/100);
+                        if(op>=100){
+                            clearInterval(timeout);
+                            done();
+                        }
+                    }
+                    element.css('opacity',0);
+                    timeout = setInterval(animateFn,100);
+                },
+                leave:function(element,done){
+                    var op = 100,timeout,
+                    animateFn = function(){
+                        op-=10;
+                        element.css('opacity',op/100);
+                        if(op<=0){
+                            clearInterval(timeout);
+                            done();
+                        }
+                    }
+                    element.css('opacity',1);
+                    timeout = setInterval(animateFn,100);
+                },
+            }
+        })
+        .controller('MyController', function ($scope, $timeout) {
+            $scope.modal = {
+                show: true
+            };
+            $scope.rooms = ['Ari', 'Q', 'Anand'];
+
+            $timeout(function () {
+                $scope.rooms.push('Ginger');
+
+                $timeout(function () {
+                    $scope.rooms.shift();
+                }, 2000)
+            }, 1000);
+
+
+
+        });
+</script>
+
+</html>

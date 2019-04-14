@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./../lib/angular.js"></script>
+    <script src="./../lib/angular-route.js"></script>
+    <script src="./../lib/angular-animate.js"></script>
+    <title>22-3 交错动画</title>
+    <style>
+        .box {
+            width: 200px;
+            /* background-color: blueviolet; */
+            border: 1px solid #999;
+        }
+
+        @keyframes firstAnimation {
+            0% {
+                background-color: antiquewhite
+            }
+
+            100% {
+                background-color: rebeccapurple;
+            }
+        }
+
+        .fade-in {
+            /* transition: 2s linear all; */
+            /* -webkit-transition: 2s linear all; */
+        }
+
+        .fade-in.ng-enter-stagger {
+            animation-delay: 200ms;
+        }
+
+        .fade-in.ng-enter {
+            animation: 2s firstAnimation;
+        }
+
+        .fade-in.ng-enter.ng-enter-active {
+            /* animation: 2s firstAnimation; */
+        }
+
+        .fade-in.ng-leave {
+            /* animation: 2s firstAnimation */
+        }
+
+        .fade-in.ng-leave.ng-leave-active {}
+
+        .item {
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-controller="MyController">
+        <button ng-click="sayHello()">Hello</button>
+        <button ng-click="add()">add</button>
+
+        <div ng-if="modal.show" class=" box">
+            <div class="item fade-in" ng-repeat="item in list track by item.id ">
+                {{item.content}}
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script>
+    angular
+        .module('myApp', ['ngAnimate'])
+        .controller('MyController', function ($scope) {
+            $scope.modal = {
+                show: true
+            };
+            $scope.list = [];
+
+            $scope.sayHello = function () {
+                $scope.modal.show = !$scope.modal.show;
+                $scope.list = mockdata();
+            };
+            var id = 0;
+            function mockdata() {
+                var res = [];
+
+                for (let index = 0; index < 2; index++) {
+                    var item = {
+                        id: id++,
+                        content: 'item' + id,
+                    }
+                    res.push(item);
+
+                }
+                return res;
+
+            }
+
+            $scope.add = function () {
+                var item = {
+                    id: id++,
+                    content: 'item' + id,
+                };
+                $scope.list.push(item);
+                var item = {
+                    id: id++,
+                    content: 'item' + id,
+                };
+                $scope.list.push(item);
+                var item = {
+                    id: id++,
+                    content: 'item' + id,
+                };
+                $scope.list.push(item);
+            }
+        });
+</script>
+
+</html>
