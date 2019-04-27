@@ -1,0 +1,44 @@
+button {
+    padding: 0.3em 0.8em;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    background: #58a linear-gradient(hsla(0.0%, 100%, .2), transparent);
+    border-radius: 0.2em;
+    box-shadow: 0 .05em .25em rgba(0, 0, 0, 0.5);
+    color: white;
+    text-shadow: 0 -.05em .05em #335166;
+    font-size: 120%;
+    line-height: 1.5;
+}
+
+button.ok {
+    background-color: #c00;
+}
+
+button.cancel {
+    background-color: #6b0;
+}
+
+hr {
+    height: .5em;
+    background: currentColor;
+}
+.callout{
+    width: 200px;
+    border:1px solid #58a;
+    background: lightcoral;
+    border-radius: 4px;
+    position: relative;
+}
+.callout::before{
+    content:"";
+    position: absolute;
+    top:-.4em;
+    left:1em;
+    padding:.35em;
+    background: inherit;
+    border: inherit;
+    border-right:0;
+    border-bottom:0;
+    transform:rotate(45deg);
+}
