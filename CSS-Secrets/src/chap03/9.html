@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2-1 border</title>
+    <style>
+       div{
+           margin:20px;
+       }
+       .box1{
+          background: #fb3;
+          width: 200px;
+          height: 200px;
+          border-radius: 100px;
+       }
+       .box2{
+        background: #fb3;
+          width: 200px;
+          height: 300px;
+          border-radius: 50% / 50%;
+       }
+       .box3{
+          background: #fb3;
+          width: 300px;
+          height: 200px;
+          border-radius: 50% / 100% 100% 0 0 ; 
+       }
+       .box4{
+        background: #fb3;
+          width: 300px;
+          height: 200px;
+           border-radius: 100% 0 0 100% / 50%;
+       }
+       .box5 {
+        background: #fb3;
+          width: 300px;
+          height: 200px;
+           border-radius:100% 0 0 0 ;
+       }
+    </style>
+</head>
+<body>
+    <h2>自适应的椭圆</h2>
+    <div class="box1">
+
+    </div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+
+    <div class="box5"></div>
+</body>
+</html>
