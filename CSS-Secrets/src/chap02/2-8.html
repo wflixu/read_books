@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <style>
+        div{
+            margin:40px;
+        }
+      .wrap{
+          background: red;
+          background-size: cover;
+          padding:1em;
+      }
+      .wrap>div{
+          background: white;
+          padding:1em;
+      }
+       .box2{
+           padding: 1em;
+           border:1em solid transparent;
+           background: linear-gradient(white,white),
+            url(https://s2.ax1x.com/2019/04/29/E3b4HJ.md.jpg);
+            background-size: cover;
+            background-clip: padding-box , border-box;
+            background-origin: border-box;
+       }
+       .box3{
+           padding:1em;
+           border:1em solid transparent;
+           background: linear-gradient(white,white) padding-box,
+           repeating-linear-gradient(-45deg,red 0,red 12.5%,
+           transparent 0,transparent 25%, #58a 0,
+           #58a 37.5%,transparent 0,transparent 50%) 
+           0 / 5em 5em;
+       }
+       .box4{
+           padding: 1em;
+           border:16px solid transparent;
+           border-image: 16 repeating-linear-gradient(
+               -45deg,red 0,red 1em,transparent 0, transparent 2em,
+               #58a 0,#58a 3em,
+               transparent 0 ,transparent 4em
+           );
+       }
+        @keyframes ants {
+            to {
+                background-position:  100%;
+            }
+        }
+
+       .box5 {
+           width: 600px;
+           height:400px;
+    
+            padding:1em;
+            border:1px solid transparent;
+            background: linear-gradient(white, white) padding-box ,
+             repeating-linear-gradient(-45deg,black 0, black 25%,white 0,white 50%) 0 / .6em .6em ;
+            animation: ants 12s linear infinite;  
+       }
+
+       .box6{
+           border-top:.2em solid transparent;
+           border-image:100% 0 0 linear-gradient(90deg,currentColor 4em,transparent 0);
+           padding-top:1em;
+       }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+        <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+             Dicta distinctio nulla laboriosam reprehenderit necessitatibus
+              fugit ex temporibus totam adipisci! Ea ut blanditiis 
+              expedita facilis
+             fuga voluptate distinctio corporis provident magni?
+        </div>
+    </div>
+
+    <div class="box2">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, sed. Asperiores, voluptatum? Nisi consequatur velit sequi. Iusto, similique. Quo libero a ipsa dolore nobis ex! Architecto quos voluptatibus repellat aliquam.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam ipsa cupiditate et aspernatur id facere quidem itaque incidunt ducimus commodi officia ab mollitia autem, quas ipsum alias praesentium quo accusantium.
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non quidem laboriosam ipsa dolore, est eveniet cumque, nulla laborum consequuntur repudiandae quam ullam unde omnis quibusdam possimus modi placeat odit debitis?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam nihil rem recusandae molestiae nostrum eligendi accusamus cumque et rerum error, totam doloribus dolor voluptate sint laudantium est maxime iste in?
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti sit, repudiandae rem quas at ratione esse quis numquam nihil dolores, deserunt repellat architecto harum perferendis. Deleniti nobis recusandae aperiam obcaecati!
+    </div>
+
+    <div class="box3">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, sed. Asperiores, voluptatum? Nisi consequatur velit sequi. Iusto, similique. Quo libero a ipsa dolore nobis ex! Architecto quos voluptatibus repellat aliquam.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam ipsa cupiditate et aspernatur id facere quidem itaque incidunt ducimus commodi officia ab mollitia autem, quas ipsum alias praesentium quo accusantium.
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non quidem laboriosam ipsa dolore, est eveniet cumque, nulla laborum consequuntur repudiandae quam ullam unde omnis quibusdam possimus modi placeat odit debitis?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam nihil rem recusandae molestiae nostrum eligendi accusamus cumque et rerum error, totam doloribus dolor voluptate sint laudantium est maxime iste in?
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti sit, repudiandae rem quas at ratione esse quis numquam nihil dolores, deserunt repellat architecto harum perferendis. Deleniti nobis recusandae aperiam obcaecati!
+    </div>
+    <div class="box4">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, sed. Asperiores, voluptatum? Nisi consequatur velit sequi. Iusto, similique. Quo libero a ipsa dolore nobis ex! Architecto quos voluptatibus repellat aliquam.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam ipsa cupiditate et aspernatur id facere quidem itaque incidunt ducimus commodi officia ab mollitia autem, quas ipsum alias praesentium quo accusantium.
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non quidem laboriosam ipsa dolore, est eveniet cumque, nulla laborum consequuntur repudiandae quam ullam unde omnis quibusdam possimus modi placeat odit debitis?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam nihil rem recusandae molestiae nostrum eligendi accusamus cumque et rerum error, totam doloribus dolor voluptate sint laudantium est maxime iste in?
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti sit, repudiandae rem quas at ratione esse quis numquam nihil dolores, deserunt repellat architecto harum perferendis. Deleniti nobis recusandae aperiam obcaecati!
+    </div>
+
+    <div class="box5">
+             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe tenetur recusandae laboriosam est dolorem. Tempora quidem explicabo impedit modi perferendis maiores voluptatibus eos incidunt exercitationem quam inventore, cum praesentium assumenda?
+    </div>
+
+    <div class="box6">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. At quidem, repellendus aut aperiam ut, placeat sunt corporis aliquid soluta dolorum adipisci omnis repellat atque praesentium quo fugit quas, suscipit beatae.
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪随机背景</title>
+    <style>
+        .box {
+            width: 600px;
+            height: 400px;
+            margin-bottom: 50px;
+        }
+
+        .box1 {
+            background: hsl(20, 40%, 90%);
+            background-image: linear-gradient(90deg, #fb3 11px, transparent 0), linear-gradient(90deg, #ab4 23px, transparent 0), linear-gradient(90deg, #655 41px, transparent 0);
+            background-size: 41px 100%, 61px 100%, 83px 100%;
+        }
+
+        .box2 {
+            border: 2px solid lightblue;
+            position: relative;
+        }
+
+        .box2::before,
+        .box2::after {
+             content:'';
+             position: absolute;
+             left:20px;
+             top: -20px;
+             border:10px solid transparent;
+             border-bottom-color: #fb3;
+             /* margin-top:-10px; */
+        }
+        .box2::after{
+            border-bottom-color: #fff;
+            top: -18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1 box"></div>
+    <div class="box2 box"></div>
+</body>
+
+</html>
