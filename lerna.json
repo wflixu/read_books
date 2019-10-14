@@ -1,0 +1,7 @@
+{
+  "npmClient": "npm",
+  "packages": [
+    "books/*"
+  ],
+  "version": "0.0.1"
+}

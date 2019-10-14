@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./../lib/angular.js"></script>
+    <title>2-2</title>
+</head>
+
+<body>
+    <div ng-controller="myCtrl">
+
+        <h1>hello {{ clock }}</h1>
+        <button ng-click="test()">toggle</button>
+    </div>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope, $timeout) {
+            // var updateClock = function () {
+            //     $scope.clock = new Date();
+            //     $timeout(function () {
+            //         updateClock();
+            //     }, 1000)
+            // }
+            // updateClock();
+            // $scope.arr = ['1', '2', '3', '4'];
+            $scope.arr = [{
+                a:2,
+                b:3
+            }];
+            console.log('init')
+            $scope.$watch('arr', function (newVal, oldVal) {
+                console.log(newVal === oldVal);
+
+                console.log(newVal, oldVal);
+            });
+            $scope.$watchCollection('arr', function (newVal, oldVal) {
+                console.log('1111111111111111111111111111111');
+                console.log(newVal === oldVal);
+                console.log(newVal, oldVal);
+            },true);
+
+
+            $scope.test = function () {
+                console.log('test');
+
+                // $scope.arr.pop();
+                $scope.arr[0].a = 5;
+                // console.log($scope.arr);
+
+            }
+        });
+
+    </script>
+</body>
+
+</html>
