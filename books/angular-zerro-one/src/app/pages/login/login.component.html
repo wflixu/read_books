@@ -1,0 +1,25 @@
+<div>
+  <form #formRef="ngForm"
+     (ngSubmit)="onSubmit(formRef.value)"
+  >
+    <input type="text"
+    required
+    minlength="3"
+     name="username"
+     placeholder="请输入用户名"
+    [(ngModel)]="username" #usernameRef="ngModel">
+
+    <div *ngIf="usernameRef.errors?.minlength">should be at least 3 charators</div>
+
+    <input required
+    placeholder="晴输入密码"
+    name="password"
+    type="text" [(ngModel)]="password" #passwordRef="ngModel">
+    <div *ngIf="passwordRef.errors?.required">
+      this is required
+    </div>
+    <!-- <button (click)="onClick()">login</button> -->
+    <button type="submit">submit</button>
+  </form>
+
+</div>

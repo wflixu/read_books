@@ -4,8 +4,11 @@ import {FormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
 import { TodoComponent } from './pages/todo/todo.component';
+import {LoginComponent} from './pages/login/login.component';
+
+import {AuthService} from './core/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { TodoComponent } from './pages/todo/todo.component';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{
+    provide: 'auth',
+    useClass: AuthService
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
