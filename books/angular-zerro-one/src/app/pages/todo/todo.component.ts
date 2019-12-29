@@ -17,9 +17,38 @@ export class TodoComponent implements OnInit {
   constructor(private service: TodoService) { }
 
   ngOnInit() {
+    this.service.getTodos()
+    .then(todos=>{
+      this.todos = todos as Todo[];
+    });
   }
   addTodo() {
-    this.todos = this.service.addTodo(this.desc);
+    this.service.addTodo(this.desc).then(todo=>{
+        this.todos.push(todo as Todo);
+      }
+      ).catch();
+
     this.desc = '';
   }
+
+  toggleTodo(todo:Todo){
+    const i = this.todos.indexOf(todo);
+    this.service.toggleTodo(todo)
+    .then(t=>{
+      this.todos[i].completed = !this.todos[i].completed;
+    })
+  }
+
+  removeTodo(todo:Todo){
+    const i  = this.todos.indexOf(todo);
+    this.service.deleteTodo(todo)
+    .then(()=>{
+      this.todos = [
+        ...this.todos.slice(0,i),
+        ...this.todos.slice(i+1)
+      ]
+    })
+  }
+
+
 }

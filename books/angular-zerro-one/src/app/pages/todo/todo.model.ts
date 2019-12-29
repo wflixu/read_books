@@ -1,5 +1,7 @@
 export class Todo {
-  id:string;
+  objectId:string;
   desc:string;
   completed:boolean;
+  createdAt?:string;
+  id?:string;
 }
