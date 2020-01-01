@@ -1,4 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ɵConsole } from '@angular/core';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -10,7 +11,8 @@ export class LoginComponent implements OnInit {
   username = '';
   password = '';
 
-  constructor(@Inject('auth') private service) { }
+  constructor(@Inject('auth') private service,
+  private router:Router) { }
 
   ngOnInit() {
   }
@@ -22,7 +24,14 @@ export class LoginComponent implements OnInit {
   onSubmit(formValue){
     console.log(formValue);
     console.log(`auth result is:`+this.service.loginWithCredentials(formValue.username,formValue.password));
-
+    this.service.loginWithCredentials(formValue.username,formValue.password)
+    .then(isLogin=>{
+       if(isLogin){
+         this.router.navigate(['todo']);
+       }else{
+        this.router.navigate(['./login']);
+       }
+    })
   }
 
 }

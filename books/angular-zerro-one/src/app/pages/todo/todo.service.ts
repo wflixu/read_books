@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, Inject } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpUrlEncodingCodec } from '@angular/common/http';
 
 
 
-import { Todo } from './todo.model';
+import { Todo } from './../../core/entities';
 
 export interface leanRes {
   result:Object;
@@ -14,23 +14,29 @@ export interface leanRes {
 })
 export class TodoService {
   private baseUrl = 'https://awgkvy8x.lc-cn-n1-shared.com/1.1/classes/';
-  private headers = new HttpHeaders(
-    {
-      'Content-type':'application/json',
-      'X-LC-Id': 'awgkVY8XvUY5oWtvmzRH6ylj-gzGzoHsz',
-      'X-LC-Key': 'GJnJ1a8KVnaVLquMKj6uSllD'
-    }
-  )
+  private headers:HttpHeaders;
+  private user;
 
   todos: Todo[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, @Inject('auth') private authService) {
+     this.user = authService.getUser();
+     this.headers =new HttpHeaders(
+      {
+        'Content-type':'application/json',
+        'X-LC-Id': 'awgkVY8XvUY5oWtvmzRH6ylj-gzGzoHsz',
+         'X-LC-Key': 'GJnJ1a8KVnaVLquMKj6uSllD',
+         'X-LC-Session':this.user.sessionToken
+      }
+    )
 
   }
   addTodo(todoDesc: string): Promise<Todo|void>{
+
      let todo = {
        desc:todoDesc,
-       completed:false
+       completed:false,
+       userId:this.user.userId
      };
      return this.http.post(
        this.baseUrl+'Todo',JSON.stringify(todo),{
@@ -47,8 +53,28 @@ export class TodoService {
      .catch(this.handleError);
   }
 
-  getTodos():Promise<Todo[]>{
-    return this.http.get(this.baseUrl+'Todo',{headers:this.headers})
+  filterTodos(filter:string):Promise<Todo[]>{
+    let filterOjb:any = {
+      userId:this.user.userId
+    };
+    switch (filter){
+       case 'ACTIVE':
+        filterOjb.completed =false;
+         break;
+       case 'COMPLETED':
+         filterOjb.completed = true;
+         break;
+         default:
+          break;
+    }
+    let data = encodeURIComponent(`where=${JSON.stringify(filterOjb)}`);
+    return this.http.get(this.baseUrl+'Todo',
+    {
+      headers:this.headers,
+      params:{
+        'where': JSON.stringify(filterOjb)
+      }
+    })
     .toPromise()
     .then((res:any) =>{
       console.log(res.results);
