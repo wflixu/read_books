@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject, ɵConsole } from '@angular/core';
 import {Router} from '@angular/router';
+import { FormControl ,Validators} from '@angular/forms';
 
 
 @Component({
@@ -13,7 +14,9 @@ export class LoginComponent implements OnInit {
 
   constructor(@Inject('auth') private service,
   private router:Router) { }
-
+  getErrorMessage() {
+    return '';
+  }
   ngOnInit() {
   }
   onClick():void{

@@ -2,11 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule }  from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import {MatButtonModule,MatFormFieldModule,MatInputModule} from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import {CoreModule} from './core/core.module';
 import{ TodoModule} from './pages/todo/todo.module';
-import {PlaygroundModule} from './pages/playground/playground.module'
 import { AppComponent } from './app.component';
 import {LoginComponent} from './pages/login/login.component';
 
@@ -25,11 +27,14 @@ import { UserService } from './core/user.service';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatInputModule,
     FormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
     CoreModule,
     TodoModule,
-    PlaygroundModule,
-    HttpClientModule,
     AppRoutingModule
   ],
   providers: [{

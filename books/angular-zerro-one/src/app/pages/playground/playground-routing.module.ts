@@ -7,7 +7,7 @@ import { PlaygroundComponent } from './playground.component';
 
 const routes:Routes =[
   {
-    path:'playground',
+    path:'/playground',
     component:PlaygroundComponent
   }
 ]
