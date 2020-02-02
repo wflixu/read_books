@@ -1,0 +1,18 @@
+
+<div>
+
+  <button
+    [@loginState]="loginBtnState"
+    (mouseenter)="toggleState(true)"
+    (mouseleave)="toggleState(false)"
+     nz-button nzType="primary">Primary</button
+    >
+</div>
+
+<div [@signal]="signal" class="traffic-light">
+
+</div>
+<div>
+  <button (click)="onGo()" nz-button nzType="primary">go</button>
+  <button (click)="onStop()" nz-button nzType="primary">stop</button>
+</div>

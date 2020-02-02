@@ -6,6 +6,7 @@ import { LoginComponent } from './pages/login/login.component';
 import {MainPageComponent } from './pages/main-page/main-page.component';
 import { SignPageComponent } from './pages/sign-page/sign-page.component';
 import { AuthGuardService } from './core/auth-guard.service';
+import { SignComponent } from './core/sign/sign.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'sign',
+    component: SignComponent
   },
   {
     path: 'sign',
@@ -40,6 +45,11 @@ const routes: Routes = [
   {
     path: 'pipe',
     loadChildren: () => import('./pages/pipe/pipe.module').then(m => m.PipeModule),
+    data: { preload: false },
+  },
+  {
+    path: 'animate',
+    loadChildren: () => import('./pages/animate/animate.module').then(m => m.AnimateModule),
     data: { preload: false },
   },
   {

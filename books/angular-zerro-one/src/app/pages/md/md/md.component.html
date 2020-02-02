@@ -1,1 +1,65 @@
-<p>md works!</p>
+<div class="gutter-example">
+  <div nz-row nzGutter="16">
+    <div nz-col class="gutter-row" nzSpan="6">
+      <div class="gutter-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" nzSpan="6">
+      <div class="gutter-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" nzSpan="6">
+      <div class="gutter-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" nzSpan="6">
+      <div class="gutter-box">col-6</div>
+    </div>
+  </div>
+</div>
+<div class="gutter-example">
+  <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }">
+    <div nz-col class="gutter-row" nzSpan="6">
+      <div class="gutter-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" nzSpan="6">
+      <div class="gutter-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" nzSpan="6">
+      <div class="gutter-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" nzSpan="6">
+      <div class="gutter-box">col-6</div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<div nz-row>
+  <div nz-col nzSpan="8">
+    col-8
+  </div>
+  <div nz-col nzSpan="8" nzOffset="8">
+    col-8
+  </div>
+</div>
+<div nz-row>
+  <div nz-col nzSpan="6" nzOffset="6">
+    col-6 col-offset-6
+  </div>
+  <div nz-col nzSpan="6" nzOffset="6">
+    col-6 col-offset-6
+  </div>
+</div>
+<div nz-row>
+  <div nz-col nzSpan="12" nzOffset="6">
+    col-12 col-offset-6
+  </div>
+</div>
+<hr>
+<br>
+<div nz-row>
+  <div nz-col [nzSpan]="18" [nzPush]="6">
+    col-18 col-push-6
+  </div>
+  <div nz-col [nzSpan]="6" [nzPull]="18">
+    col-6 col-pull-18
+  </div>
+</div>

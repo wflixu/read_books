@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { NzGridModule } from 'ng-zorro-antd/grid';
+
 import { MdRoutingModule } from './md-routing.module';
 import { MdComponent } from './md/md.component';
 
@@ -9,7 +11,8 @@ import { MdComponent } from './md/md.component';
   declarations: [MdComponent],
   imports: [
     CommonModule,
-    MdRoutingModule
+    NzGridModule,
+    MdRoutingModule,
   ]
 })
 export class MdModule { }
