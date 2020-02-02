@@ -4,29 +4,39 @@ import {
   CanActivateChild,
   Router,
   ActivatedRouteSnapshot,
-  RouterStateSnapshot } from '@angular/router';
+  RouterStateSnapshot,
+  CanLoad,
+  Route,
+  UrlSegment} from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Auth } from './entities';
 
 @Injectable()
-export class AuthGuardService implements CanActivate, CanActivateChild {
+export class AuthGuardService implements CanActivate, CanActivateChild,CanLoad {
 
-  constructor(private router: Router) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  constructor(private router: Router, @Inject('auth')private authService ) { }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<boolean> {
+    console.log('111111111111');
     let url: string = state.url;
-
-    return this.checkLogin(url);
+    return this.authService.getAuth().pipe(
+      map((auth:Auth)=>!auth.hasError)
+    );
   }
-  checkLogin(url: string): boolean {
-    if (localStorage.getItem('user') !== null) { return true; }
-
-    // Store the attempted URL for redirecting
-    localStorage.setItem('redirectUrl', url);
-
-    // Navigate to the login page with extras
-    this.router.navigate(['/login']);
-    return false;
+  canLoad(route: Route):Observable<boolean>{
+    console.log('22222222222222222');
+    return this.authService.getAuth().pipe(
+      map((auth:Auth)=>{
+        console.log(auth);
+         return !auth.hasError;
+      })
+    )
   }
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean|Observable<boolean> {
     return this.canActivate(route, state);
   }
+
 }

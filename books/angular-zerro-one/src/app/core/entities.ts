@@ -8,7 +8,15 @@ export interface Todo {
 }
 
 export interface User{
-  id:string;
+  userId:string;
   username:string;
+  sessionToken?:string;
   password?:string;
+}
+
+export class Auth {
+  user?: User;
+  hasError: boolean;
+  errMsg: string;
+  redirectUrl: string;
 }

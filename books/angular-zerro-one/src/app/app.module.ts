@@ -16,6 +16,11 @@ import {AuthService} from './core/auth.service';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SignPageComponent } from './pages/sign-page/sign-page.component';
 import { UserService } from './core/user.service';
+import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
+import { registerLocaleData } from '@angular/common';
+import zh from '@angular/common/locales/zh';
+
+registerLocaleData(zh);
 
 
 @NgModule({
@@ -35,13 +40,15 @@ import { UserService } from './core/user.service';
     MatButtonModule,
     CoreModule,
     TodoModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgZorroAntdModule
   ],
   providers: [{
     provide: '',
     useClass: AuthService
   },
   UserService,
+  { provide: NZ_I18N, useValue: zh_CN },
 ],
   bootstrap: [AppComponent]
 })

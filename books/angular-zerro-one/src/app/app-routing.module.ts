@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 
 import {MainPageComponent } from './pages/main-page/main-page.component';
 import { SignPageComponent } from './pages/sign-page/sign-page.component';
+import { AuthGuardService } from './core/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -15,11 +16,11 @@ const routes: Routes = [
   },
   {
     path: 'todo',
-    redirectTo:'todo/ALL'
+    redirectTo:'todo/ALL',
   },
   {
     path: 'login',
-    component:LoginComponent
+    component: LoginComponent
   },
   {
     path: 'sign',
@@ -33,7 +34,13 @@ const routes: Routes = [
   {
     path: 'chart',
     loadChildren: () => import('./pages/chart/chart.module').then(m => m.ChartModule),
-    data: { preload: false }
+    data: { preload: false },
+    // canLoad: [AuthGuardService]
+  },
+  {
+    path: 'pipe',
+    loadChildren: () => import('./pages/pipe/pipe.module').then(m => m.PipeModule),
+    data: { preload: false },
   },
   {
     path:'playground',
@@ -44,7 +51,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes,{
-    preloadingStrategy: PreloadAllModules
+    useHash: true
   })],
   exports: [RouterModule]
 })

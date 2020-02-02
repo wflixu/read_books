@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { User } from './entities';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class UserService {
@@ -28,28 +30,26 @@ export class UserService {
               })
               .catch(this.handleError);
   }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }
-  login(username:string,password:string):Promise<string|void>{
+  login(username:string,password:string):Observable<User>{
      return this.http.post(this.api_url,{
        username:username,
        password:password,
      },{
        headers:this.headers
-     })
-     .toPromise()
-     .then((res:any)=>{
-        localStorage.setItem('user',JSON.stringify( {
-          sessionToken:res.sessionToken,
-          userId:res.objectId
-        }));
-        console.log(res);
-        return res;
-     }).catch(err=>{
-
-     })
+     }).pipe(
+       map((res:any)=>{
+          return {
+            username:res.username,
+            userId:res.objectId,
+            sessionToken:res.sessionToken
+          }
+       })
+     )
   }
 }
 

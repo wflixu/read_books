@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, ɵConsole } from '@angular/core';
 import {Router} from '@angular/router';
 import { FormControl ,Validators} from '@angular/forms';
+import { Auth } from 'src/app/core/entities';
 
 
 @Component({
@@ -28,8 +29,8 @@ export class LoginComponent implements OnInit {
     console.log(formValue);
     console.log(`auth result is:`+this.service.loginWithCredentials(formValue.username,formValue.password));
     this.service.loginWithCredentials(formValue.username,formValue.password)
-    .then(isLogin=>{
-       if(isLogin){
+    .subscribe((auth:Auth)=>{
+       if(!auth.hasError){
          this.router.navigate(['todo']);
        }else{
         this.router.navigate(['./login']);
