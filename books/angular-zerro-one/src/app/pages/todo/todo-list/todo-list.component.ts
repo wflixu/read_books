@@ -1,6 +1,7 @@
-import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Input,Output,EventEmitter, SimpleChanges } from '@angular/core';
 
 import { Todo } from './../../../core/entities';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
@@ -13,14 +14,13 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit() {
   }
-  _todos: Todo[] = [];
-  @Input()
-  set todos(todos:Todo[]){
-    this._todos = [...todos];
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes['todos']);
+
   }
-  get todos() {
-    return this._todos;
-  }
+  private _todos: Todo[] = [];
+  @Input() todos: Observable<Todo[]>;
+
   @Output() onRemoveTodo = new EventEmitter<Todo>();
   @Output() onToggleTodo = new EventEmitter<Todo>();
   @Output() onToggleAll = new EventEmitter<boolean>();
@@ -32,7 +32,6 @@ export class TodoListComponent implements OnInit {
     this.onToggleTodo.emit(todo);
   }
   onToggleAllTriggered() {
-    console.log('111111')
     this.onToggleAll.emit(true);
   }
 
