@@ -9,7 +9,15 @@ import { Observable } from 'rxjs';
   styleUrls: ['./todo-list.component.less']
 })
 export class TodoListComponent implements OnInit {
-
+  private _todos: Todo[] = [];
+  @Input()
+  set todos(todos:Todo[]){
+    if(todos !== null)
+      this._todos = [...todos];
+  }
+  get todos() {
+    return this._todos;
+  }
   constructor() { }
 
   ngOnInit() {
@@ -18,8 +26,7 @@ export class TodoListComponent implements OnInit {
     console.log(changes['todos']);
 
   }
-  private _todos: Todo[] = [];
-  @Input() todos: Observable<Todo[]>;
+
 
   @Output() onRemoveTodo = new EventEmitter<Todo>();
   @Output() onToggleTodo = new EventEmitter<Todo>();

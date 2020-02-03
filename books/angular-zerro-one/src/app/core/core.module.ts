@@ -1,6 +1,9 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -15,9 +18,11 @@ import { SignComponent } from './sign/sign.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     NzInputModule,
     NzButtonModule,
-    NzFormModule
+    NzFormModule,
+
   ],
   providers: [
     { provide: 'auth', useClass: AuthService },

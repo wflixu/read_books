@@ -1,3 +1,13 @@
 <p>playground works!</p>
 <h2>clock</h2>
 <p>{{clock|async}}</p>
+
+<h2>ngrx counter</h2>
+
+<button id="increment" (click)="increment()">Increment</button>
+
+<div>Current Count: {{ count$ | async }}</div>
+
+<button id="decrement" (click)="decrement()">Decrement</button>
+
+<button id="reset" (click)="reset()">Reset Counter</button>

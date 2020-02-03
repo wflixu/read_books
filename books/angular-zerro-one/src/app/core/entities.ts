@@ -1,5 +1,5 @@
 export interface Todo {
-  objectId:string;
+  objectId?:string;
   desc:string;
   completed:boolean;
   createdAt?:string;
@@ -19,4 +19,10 @@ export class Auth {
   hasError: boolean;
   errMsg: string;
   redirectUrl: string;
+}
+
+export interface AppState {
+  todos: Todo[];
+  todoFilter: any;
+  count: number;
 }

@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+
+import { Store, select } from '@ngrx/store';
+import { Observable, combineLatest } from 'rxjs';
+import { pluck, mergeMap, startWith, tap } from 'rxjs/operators';
 
 
-import {Router,ActivatedRoute,Params} from '@angular/router'
 import { TodoService } from './todo.service';
-import { Todo } from './../../core/entities';
-import { Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
+import { ADD_TODO, FETCH_FROM_API } from './todo.action';
+import { AppState, Todo } from './../../core/entities';
 
 @Component({
 
@@ -14,55 +17,78 @@ import { pluck } from 'rxjs/operators';
   providers: [TodoService]
 })
 export class TodoComponent implements OnInit {
-  todos : Observable<Todo[]>;
+  private user;
+  todos: Observable<Todo[]>;
   desc: string = '';
-  filter:string = 'ALL';
+  filter: string = 'ALL';
 
   constructor(
     private service: TodoService,
-    private route:ActivatedRoute,
-    private router:Router) { }
+    private route: ActivatedRoute,
+    private router: Router,
+    @Inject('auth') private authService,
+    private store$: Store<AppState>
+  ) {
+    const fetchData$ = this.service.getTodos().pipe(
+      mergeMap(
+        todos => {
+          this.store$.dispatch(FETCH_FROM_API({ todos }));
+          return this.store$.select('todos');
+        }
+      ),
+      startWith([])
+    );
+    const filterData$ = this.route.params.pipe(
+      pluck('filter'),
+      tap(value => {
+        const filter = value as string;
+        this.store$.dispatch({ type: filter });
+      }),
+      mergeMap(
+        _ => this.store$.select('todoFilter')
+      )
+    );
+    this.todos = combineLatest(
+      fetchData$,
+      filterData$,
+      (todos: Todo[], filter: any) => todos.filter(filter)
+    )
+
+    this.user = authService.getUser();
+
+  }
 
   ngOnInit() {
-
-    this.route.params.pipe(
-      pluck('filter')
-    )
-    .subscribe(filter => {
-      this.service.filterTodos(filter);
-      this.todos = this.service.todos;
-    })
   }
 
   addTodo() {
-    this.service.addTodo(this.desc)
-
+    this.service.addTodo(this.desc);
     this.desc = '';
   }
 
-
-  toggleTodo(todo:Todo){
-    this.service.toggleTodo(todo)
-  }
-
-  removeTodo(todo:Todo){
+  removeTodo(todo: Todo) {
     this.service.deleteTodo(todo);
   }
-  toggleAll(){
-   this.service.toggleAll();
-  }
-  clearCompleted(){
-    this.service.clearCompleted();
-  }
-
-  filterTodos(filter:string):void{
-    this.service.filterTodos(filter);
-  }
 
 
-  onTextChanges(value){
+  toggleTodo(todo: Todo) {
+    this.service.toggleTodo(todo);
+  }
+
+  toggleAll() {
+    this.service.toggleAll();
+  }
+  clearCompleted() {
+    // this.service.clearCompleted();
+  }
+
+  filterTodos(filter: string): void {
+    // this.service.filterTodos(filter);
+  }
+
+
+  onTextChanges(value) {
     this.desc = value;
-    console.log(this.desc)
   }
 
 

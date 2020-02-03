@@ -8,6 +8,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule,MatFormFieldModule,MatInputModule} from '@angular/material';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { StoreModule } from '@ngrx/store';
+import { todoReducer,todoFilterReducer } from './pages/todo/todo.reducer';
+// import { authReducer } from '../reducers/auth.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { counterReducer } from './counter.reducer';
 
 import { AppRoutingModule } from './app-routing.module';
 import {CoreModule} from './core/core.module';
@@ -31,6 +36,7 @@ registerLocaleData(zh);
     LoginComponent,
     MainPageComponent,
     SignPageComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,12 @@ registerLocaleData(zh);
     TodoModule,
     AppRoutingModule,
     NgZorroAntdModule,
-    NzFormModule
+    NzFormModule,
+    StoreModule.forRoot({
+      count: counterReducer,
+      todos: todoReducer,
+      todoFilter: todoFilterReducer,
+     })
   ],
   providers: [{
     provide: '',

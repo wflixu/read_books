@@ -1,11 +1,19 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpUrlEncodingCodec } from '@angular/common/http';
 
+import { Store } from '@ngrx/store';
+import { BehaviorSubject, Observable, from } from 'rxjs';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 
-
-import { Todo } from './../../core/entities';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Todo, AppState } from './../../core/entities';
+import {
+  ADD_TODO,
+  REMOVE_TODO,
+  TOGGLE_TODO,
+  TOGGLE_ALL,
+  CLEAR_COMPLETED,
+  FETCH_FROM_API
+} from './todo.action'
 
 export interface leanRes {
   result: Object;
@@ -18,13 +26,9 @@ export class TodoService {
   private baseUrl = 'https://awgkvy8x.lc-cn-n1-shared.com/1.1/classes/';
   private headers: HttpHeaders;
   private user;
-  private _todos: BehaviorSubject<Todo[]>;
 
-  private dataStore: {
-    todos: Todo[]
-  };
-
-  constructor(private http: HttpClient, @Inject('auth') private authService) {
+  constructor(private http: HttpClient, @Inject('auth') private authService,
+    private store$: Store<AppState>) {
     this.user = authService.getUser();
     this.headers = new HttpHeaders(
       {
@@ -34,13 +38,10 @@ export class TodoService {
         'X-LC-Session': this.user.sessionToken
       }
     );
-    this.dataStore = { todos: [] };
-    this._todos = new BehaviorSubject<Todo[]>([]);
 
   }
 
   addTodo(todoDesc: string) {
-
     let todo = {
       desc: todoDesc,
       completed: false,
@@ -59,16 +60,51 @@ export class TodoService {
       }),
       catchError(this.handleError)
     ).subscribe((todo: Todo) => {
-      this.dataStore.todos = [...this.dataStore.todos, todo];
-      this._todos.next(Object.assign({}, this.dataStore).todos);
+      this.store$.dispatch(ADD_TODO({todo}));
     })
   }
 
-  get todos() {
-    return this._todos.asObservable();
+
+  public deleteTodo(todo: Todo) {
+    const url = `${this.baseUrl}${'Todo'}/${todo.objectId}`;
+    this.http.delete(url, { headers: this.headers })
+      .subscribe(_ => {
+        this.store$.dispatch(REMOVE_TODO({todo}));
+      });
   }
 
-  getTodos() {
+
+  public toggleTodo(todo: Todo) {
+    const url = `${this.baseUrl}${'Todo'}/${todo.objectId}`;
+    let updateTodo = {
+      ...todo,
+      createdAt: null,
+      completed: !todo.completed,
+      updatedAt: null
+    };
+    delete updateTodo['createdAt'];
+    delete updateTodo['updatedAt'];
+
+    return this.http.put(url, JSON.stringify(updateTodo), {
+      headers: this.headers
+    }).subscribe(_ => {
+       this.store$.dispatch(TOGGLE_TODO({todo:updateTodo}));
+    })
+  }
+
+   public toggleAll() {
+    this.getTodos().pipe(
+     mergeMap(todos => {
+       return from(todos);
+     }),
+    ).subscribe(todo =>{
+      // this.toggleTodo(todo);
+    });
+  }
+
+
+
+  getTodos(): Observable<Todo[]> {
     let filterOjb: any = {
       userId: this.user.userId
     };
@@ -84,85 +120,48 @@ export class TodoService {
           console.log(res.results);
           return res.results as Todo[];
         })
-      ).subscribe(todos => this.updateStoreAndSubject(todos));
+      );
   }
 
-  filterTodos(filter: string) {
-    let filterOjb: any = {
-      userId: this.user.userId
-    };
-    switch (filter) {
-      case 'ACTIVE':
-        filterOjb.completed = false;
-        break;
-      case 'COMPLETED':
-        filterOjb.completed = true;
-        break;
-      default:
-        break;
-    }
-    let data = encodeURIComponent(`where=${JSON.stringify(filterOjb)}`);
-    this.http.get(this.baseUrl + 'Todo',
-      {
-        headers: this.headers,
-        params: {
-          'where': JSON.stringify(filterOjb)
-        }
-      })
-      .pipe(
-        map((res: any) => {
-          console.log(res.results);
-          return res.results as Todo[];
-        })
-      ).subscribe(todos => this.updateStoreAndSubject(todos));
-  }
-
-  toggleTodo(todo: Todo) {
-    const url = `${this.baseUrl}${'Todo'}/${todo.objectId}`;
-    const i = this.dataStore.todos.indexOf(todo);
-    let updateTodo = {
-      ...todo,
-      createdAt: null,
-      completed: !todo.completed,
-      updatedAt: null
-    };
-    delete updateTodo['createdAt'];
-    delete updateTodo['updatedAt'];
-
-    this.http.put(url, JSON.stringify(updateTodo), {
-      headers: this.headers
-    }).subscribe(_ => {
-      this.dataStore.todos = [
-        ...this.dataStore.todos.slice(0, i),
-        updateTodo,
-        ...this.dataStore.todos.slice(i + 1)
-      ];
-      this._todos.next(Object.assign({}, this.dataStore).todos);
-    })
-  }
+  // filterTodos(filter: string) {
+  //   let filterOjb: any = {
+  //     userId: this.user.userId
+  //   };
+  //   switch (filter) {
+  //     case 'ACTIVE':
+  //       filterOjb.completed = false;
+  //       break;
+  //     case 'COMPLETED':
+  //       filterOjb.completed = true;
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  //   let data = encodeURIComponent(`where=${JSON.stringify(filterOjb)}`);
+  //   this.http.get(this.baseUrl + 'Todo',
+  //     {
+  //       headers: this.headers,
+  //       params: {
+  //         'where': JSON.stringify(filterOjb)
+  //       }
+  //     })
+  //     .pipe(
+  //       map((res: any) => {
+  //         console.log(res.results);
+  //         return res.results as Todo[];
+  //       })
+  //     ).subscribe(todos => this.updateStoreAndSubject(todos));
+  // }
 
 
-  public deleteTodo(todo: Todo) {
-    const url = `${this.baseUrl}${'Todo'}/${todo.objectId}`;
-    const i = this.dataStore.todos.indexOf(todo);
-    this.http.delete(url, { headers: this.headers })
-      .subscribe(_ => {
-        this.dataStore.todos = [
-          ...this.dataStore.todos.slice(0, i),
-          ...this.dataStore.todos.slice(i + 1)
-        ];
-        this._todos.next(Object.assign({}, this.dataStore).todos);
-      });
-  }
 
-  toggleAll(){
-    this.dataStore.todos.forEach(todo => this.toggleTodo(todo));
-  }
-  clearCompleted(){
-    this.dataStore.todos
-      .filter(todo => todo.completed)
-      .forEach(todo => this.deleteTodo(todo));
-  }
+
+
+  // clearCompleted() {
+  //   this.dataStore.todos
+  //     .filter(todo => todo.completed)
+  //     .forEach(todo => this.deleteTodo(todo));
+  // }
 
 
   private handleError(err: any): Promise<any> {
@@ -170,10 +169,10 @@ export class TodoService {
     return Promise.reject(err.message || err)
   }
 
-  private updateStoreAndSubject(todos) {
-    this.dataStore.todos = [...todos];
-    this._todos.next(Object.assign({}, this.dataStore).todos);
-  }
+  // private updateStoreAndSubject(todos) {
+  //   this.dataStore.todos = [...todos];
+  //   this._todos.next(Object.assign({}, this.dataStore).todos);
+  // }
 
 
 }
