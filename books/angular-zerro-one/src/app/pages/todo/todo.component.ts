@@ -24,21 +24,14 @@ export class TodoComponent implements OnInit {
     private router:Router) { }
 
   ngOnInit() {
-    // this.route.params.forEach((params:Params)=>{
-    //  this.filter = params['filter'];
-    //  this.filterTodos(this.filter);
-    // })
 
     this.route.params.pipe(
       pluck('filter')
     )
     .subscribe(filter => {
-       console.log(filter,'11111111111111111111111111');
       this.service.filterTodos(filter);
       this.todos = this.service.todos;
     })
-
-
   }
 
   addTodo() {
