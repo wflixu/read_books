@@ -28,8 +28,8 @@ export class UserService {
   }
   public login(username: string, password: string): Observable<User> {
     return this.http.post(this.api_url, {
-      username: username,
-      password: password,
+      username,
+      password,
     }, {
       headers: this.headers
     }).pipe(

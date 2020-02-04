@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders, HttpUrlEncodingCodec } from '@angular/common/h
 
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable, from } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, filter, tap } from 'rxjs/operators';
 
-import { Todo, AppState } from './../../core/entities';
+import { Todo, AppState, Auth } from './../../core/entities';
 import {
   ADD_TODO,
   REMOVE_TODO,
@@ -26,18 +26,25 @@ export class TodoService {
   private baseUrl = 'https://awgkvy8x.lc-cn-n1-shared.com/1.1/classes/';
   private headers: HttpHeaders;
   private user;
+  private auth$: Observable<Auth>;
 
   constructor(private http: HttpClient, @Inject('auth') private authService,
     private store$: Store<AppState>) {
-    this.user = authService.getUser();
+
     this.headers = new HttpHeaders(
       {
         'Content-type': 'application/json',
         'X-LC-Id': 'awgkVY8XvUY5oWtvmzRH6ylj-gzGzoHsz',
         'X-LC-Key': 'GJnJ1a8KVnaVLquMKj6uSllD',
-        'X-LC-Session': this.user.sessionToken
+        'X-LC-Session': ''
       }
     );
+    this.auth$ = this.store$.select('auth').pipe(
+      filter(auth => auth.user !== null),
+      tap(auth=>{
+         this.headers.set('X-LC-Session',auth.user.sessionToken);
+      })
+    )
 
   }
 
@@ -60,7 +67,7 @@ export class TodoService {
       }),
       catchError(this.handleError)
     ).subscribe((todo: Todo) => {
-      this.store$.dispatch(ADD_TODO({todo}));
+      this.store$.dispatch(ADD_TODO({ todo }));
     })
   }
 
@@ -69,7 +76,7 @@ export class TodoService {
     const url = `${this.baseUrl}${'Todo'}/${todo.objectId}`;
     this.http.delete(url, { headers: this.headers })
       .subscribe(_ => {
-        this.store$.dispatch(REMOVE_TODO({todo}));
+        this.store$.dispatch(REMOVE_TODO({ todo }));
       });
   }
 
@@ -88,39 +95,51 @@ export class TodoService {
     return this.http.put(url, JSON.stringify(updateTodo), {
       headers: this.headers
     }).subscribe(_ => {
-       this.store$.dispatch(TOGGLE_TODO({todo:updateTodo}));
+      this.store$.dispatch(TOGGLE_TODO({ todo: updateTodo }));
     })
   }
 
-   public toggleAll() {
+  public toggleAll() {
     this.getTodos().pipe(
-     mergeMap(todos => {
-       return from(todos);
-     }),
-    ).subscribe(todo =>{
+      mergeMap(todos => {
+        return from(todos);
+      }),
+    ).subscribe(todo => {
+      console.log(todo);
       // this.toggleTodo(todo);
     });
+  }
+
+  public clearCompleted() {
+    // this.dataStore.todos
+    //   .filter(todo => todo.completed)
+    //   .forEach(todo => this.deleteTodo(todo));
   }
 
 
 
   getTodos(): Observable<Todo[]> {
-    let filterOjb: any = {
-      userId: this.user.userId
-    };
-    let data = encodeURIComponent(`where=${JSON.stringify(filterOjb)}`);
-    return this.http.get(this.baseUrl + 'Todo',
-      {
-        headers: this.headers,
-        params: {
-          'where': JSON.stringify(filterOjb)
-        }
-      }).pipe(
-        map((res: any) => {
-          console.log(res.results);
-          return res.results as Todo[];
-        })
-      );
+
+    return this.auth$.pipe(
+      mergeMap((auth: Auth) => {
+        let filterOjb: any = {
+          userId: auth.user.userId
+        };
+        let data = encodeURIComponent(`where=${JSON.stringify(filterOjb)}`);
+        return this.http.get(this.baseUrl + 'Todo',
+          {
+            headers: this.headers,
+            params: {
+              'where': JSON.stringify(filterOjb)
+            }
+          }).pipe(
+            map((res: any) => {
+              console.log(res.results);
+              return res.results as Todo[];
+            })
+          );
+      })
+    )
   }
 
   // filterTodos(filter: string) {
@@ -157,11 +176,7 @@ export class TodoService {
 
 
 
-  // clearCompleted() {
-  //   this.dataStore.todos
-  //     .filter(todo => todo.completed)
-  //     .forEach(todo => this.deleteTodo(todo));
-  // }
+
 
 
   private handleError(err: any): Promise<any> {

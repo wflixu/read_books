@@ -82,9 +82,7 @@ export class TodoComponent implements OnInit {
     // this.service.clearCompleted();
   }
 
-  filterTodos(filter: string): void {
-    // this.service.filterTodos(filter);
-  }
+
 
 
   onTextChanges(value) {
