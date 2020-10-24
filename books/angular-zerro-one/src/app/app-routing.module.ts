@@ -53,6 +53,12 @@ const routes: Routes = [
     data: { preload: false },
   },
   {
+    // rxjs play
+    path: 'rx',
+    loadChildren: () => import('./rx/rx.module').then(m => m.RxModule),
+    data: { preload: false },
+  },
+  {
     path:'playground',
     loadChildren: () => import('./pages/playground/playground.module').then(mod => mod.PlaygroundModule),
   },

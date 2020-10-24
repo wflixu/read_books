@@ -1,15 +1,12 @@
 {
-  "name": "dive-rxjs",
+  "name": "design_patterns_with_ES",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node src/chap12.js"
+    "test": "node src/index.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "rxjs": "^6.6.2"
-  }
+  "license": "ISC"
 }

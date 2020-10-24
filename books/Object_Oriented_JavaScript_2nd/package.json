@@ -1,15 +1,12 @@
 {
-  "name": "dive-rxjs",
+  "name": "Object_Oriented_JavaScript_2nd",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node src/chap12.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "rxjs": "^6.6.2"
-  }
+  "license": "ISC"
 }
