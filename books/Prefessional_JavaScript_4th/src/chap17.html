@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div style="padding:20px;background-color:antiquewhite" onmouseout="mouseoutFn()">
+        <div style="background-color:#f90; height: 40px;">
+            
+        </div>
+    </div>
+    <div style="padding:20px;background-color:#f66">
+         sibling
+    </div>
+    <script>
+        function mouseoutFn() {
+            console.log("mouseout");
+        }
+    </script> -->
+    <div id="my" onmouseout="mouseoutFn()" onmouseover="mouseoverFn()" style="background-color:red;height:100px;width:100px;">
+        
+    </div>
+
+    <script>
+        let div =  document.getElementById('my');
+        div.addEventListener('mouseout',function  (event) {
+          console.log('mouseout',event.relatedTarget);
+        });
+        div.addEventListener('mouseover',function (event) {
+            console.log('mouseover',event.relatedTarget);
+        })
+
+        window.addEventListener('unload',function(){
+            alert('unload');
+            
+        })
+        window.addEventListener('beforeunload',function(event){
+            event.returnValue = 'are you sure?';
+            return 'are you sure';
+            alert('beforeunload');
+        })
+    
+    </script>
+</body>
+</html>

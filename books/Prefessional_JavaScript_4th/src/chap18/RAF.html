@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="progress">
+        <div id="status"></div>
+    </div>
+    <script>
+       let status = document.getElementById('status');
+       function update(){
+        status.style.width = (parseInt(status.style.width,10)+1) + '%';
+        if(status.style.width !== '100%'){
+            requestAnimationFrame(update);
+        }
+       }
+
+       requestAnimationFrame(update);
+    </script>
+
+    <style>
+        .progress {
+            height:10px;
+            width:600px;
+            background-color: #f1f1f1;
+        }
+        #status {
+            background-color: #f90;
+            height:10px;
+        }
+    </style>
+</body>
+</html>

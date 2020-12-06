@@ -1,10 +1,10 @@
-var Observable = require('rxjs/Observable').Observable;
 
-require('rxjs/add/observable/of');
-require('rxjs/add/observable/range');
-require('rxjs/add/observable/generate');
-require('rxjs/add/operator/repeat');
-require('rxjs/add/operator/map');
+// var Observable = require('rxjs/Observable').Observable;
+// require('rxjs/add/observable/of');
+// require('rxjs/add/observable/range');
+// require('rxjs/add/observable/generate');
+// require('rxjs/add/operator/repeat');
+// require('rxjs/add/operator/map');
 
 // const source$ =Observable.of(1,2,3);
 // source$.subscribe(console.log,null,()=>console.log('complete'));
@@ -72,11 +72,11 @@ require('rxjs/add/operator/map');
 //     ()=>console.log('complete')
 // );
 
-require('rxjs/add/observable/empty');
-require('rxjs/add/observable/throw');
-require('rxjs/add/observable/never');
-require('rxjs/add/observable/interval');
-require('rxjs/add/observable/timer');
+// require('rxjs/add/observable/empty');
+// require('rxjs/add/observable/throw');
+// require('rxjs/add/observable/never');
+// require('rxjs/add/observable/interval');
+// require('rxjs/add/observable/timer');
 
 // const source$ = Observable.interval(1000).map(x=>x+1);
 // const source$ = Observable.timer(1000).map(x=>x+1);
@@ -94,7 +94,7 @@ require('rxjs/add/observable/timer');
 //     );
 
 
-    require('rxjs/add/observable/from');
+    // require('rxjs/add/observable/from');
 
     // const source$ = Observable.from([1,2,3]);
 
@@ -115,21 +115,71 @@ require('rxjs/add/observable/timer');
     // );
 
 
-    require('rxjs/add/observable/fromEvent');
+    // require('rxjs/add/observable/fromEvent');
 
-    const EventEmitter= require('events');
-    const emitter = new EventEmitter();
-    const source$ = Observable.fromEvent(emitter,'msg')
+    // const EventEmitter= require('events');
+    // const emitter = new EventEmitter();
+    // const source$ = Observable.fromEvent(emitter,'msg')
 
-    source$.subscribe(
-        console.log,
-        error => console.log('catch',error),
-        ()=>console.log('complete')
-    );
+    // source$.subscribe(
+    //     console.log,
+    //     error => console.log('catch',error),
+    //     ()=>console.log('complete')
+    // );
 
-    emitter.emit('msg',1)    
-    emitter.emit('msg',2)    
-    emitter.emit('another-msg','oops');
-    emitter.emit('msg',3)    
+    // emitter.emit('msg',1)    
+    // emitter.emit('msg',2)    
+    // emitter.emit('another-msg','oops');
+    // emitter.emit('msg',3)  
+
+
+    // import { of,range } from 'rxjs';
+    
+
+    // of(1,2,3).subscribe(
+    //     console.log,
+    //     null,
+    //     ()=>{
+    //         console.log('complete');
+    //     }
+    // )
+
+    // const source$ = range(1,10);
+
+    // source$.subscribe(console.log);
+
+// import { generate } from 'rxjs';
+
+// generate(
+//   2,
+//   x => x <= 8,
+//   x => x + 3
+// ).subscribe(console.log);
+
+
+// generate(
+//     2,
+//     x => x <= 38,
+//     x => x + 3,
+//     x => '.'.repeat(x)
+//   ).subscribe(console.log);
+
+// import { repeat, delay } from 'rxjs/operators';
+// import { of } from 'rxjs';
+
+// const delayedThing = of('delayed value').pipe(delay(2000));
+
+// delayedThing
+//   .pipe(repeat(3))
+//   // delayed value...delayed value...delayed value
+//   .subscribe(console.log);
+
+
+import { timer } from 'rxjs';
+
+//emit 0 after 1 second then complete, since no second argument is supplied
+const source = timer(1000);
+//output: 0
+const subscribe = source.subscribe(val => console.log(val));
     
 

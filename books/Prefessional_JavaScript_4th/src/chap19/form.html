@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="myForm"  name="myForm">
+        <input type="submit" value="submit"  name="submit"></input>
+    </form>
+
+    <button id="foo">toggle</button>
+
+
+    <script>
+        // let form = document.getElementById('myForm');
+        // form.addEventListener('submit', (event)=>{
+        //     event.preventDefault();
+        //     let target = event.target;
+        //     let btn = target.elements['submit'];
+        //     console.log('');
+            
+        //     btn.disabled = true;
+        // })
+        let btn = document.forms['myForm']['submit'];
+
+        btn.addEventListener('click', (event)=>{
+            event.preventDefault();
+            btn.disabled = !btn.disabled;
+        })
+
+        let foo = document.getElementById('foo');
+
+        foo.addEventListener('click', (event)=>{
+            btn.disabled = !btn.disabled;
+        })
+        console.log(btn);
+        
+    </script>
+</body>
+</html>
