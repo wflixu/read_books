@@ -16,8 +16,8 @@ import { TodoListComponent } from './todo-list/todo-list.component';
   imports: [
     CommonModule,
     FormsModule,
-    TodoRoutingModule,
     HttpClientModule,
+    TodoRoutingModule,
   ],
   declarations: [
     TodoComponent,

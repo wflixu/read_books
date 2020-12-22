@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
   {
-    path: 'todo/:filter',
+    path: 'todos/:filter',
     canActivate:[AuthGuardService],
     component: TodoComponent
   }

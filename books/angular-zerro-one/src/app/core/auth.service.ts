@@ -12,6 +12,7 @@ import {
   sign,
 } from './auth.actions';
 import { Router } from '@angular/router';
+import { X_LC_ID, X_LC_KEY } from './net';
 
 @Injectable({
   providedIn: 'root'
@@ -19,19 +20,12 @@ import { Router } from '@angular/router';
 export class AuthService {
   auth: Auth = { hasError: true, redirectUrl: '', errMsg: 'not logged in' };
   subject: ReplaySubject<Auth> = new ReplaySubject<Auth>(1);
-  private headers = new HttpHeaders(
-    {
-      'Content-type': 'application/json',
-      'X-LC-Id': 'awgkVY8XvUY5oWtvmzRH6ylj-gzGzoHsz',
-      'X-LC-Key': 'GJnJ1a8KVnaVLquMKj6uSllD'
-    }
-  );
 
   private sessionToken: string;
   private userId: string;
-
-
   constructor(private http: HttpClient, @Inject('user') private userService,
+    // @Inject(X_LC_ID) private appId,
+    // @Inject(X_LC_KEY) private appKey,
     private store$: Store<AppState>,
     private router: Router
   ) {

@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule, PreloadAllModules } from "@angular/router";
 
-import { LoginComponent } from './pages/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 
 import {MainPageComponent } from './pages/main-page/main-page.component';
 import { SignPageComponent } from './pages/sign-page/sign-page.component';
@@ -16,10 +16,6 @@ const routes: Routes = [
     pathMatch: "full"
   },
   {
-    path: 'todo',
-    redirectTo:'todo/ALL',
-  },
-  {
     path: 'login',
     component: LoginComponent
   },
@@ -30,6 +26,11 @@ const routes: Routes = [
   {
     path: 'sign',
     component:SignPageComponent
+  },
+  {
+    path: 'todos',
+    loadChildren: () => import('./pages/todo/todo.module').then(m => m.TodoModule),
+    data: { preload: false }
   },
   {
     path: 'md',

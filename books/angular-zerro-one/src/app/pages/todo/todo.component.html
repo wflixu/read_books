@@ -12,7 +12,7 @@
     (onToggleTodo)="toggleTodo($event)"
      (onToggleAll)="toggleAll()" ></app-todo-list>
 
-  <app-todo-footer [itemCount]="(todos|async).length"
+  <app-todo-footer [itemCount]="(todos|async)?.length"
   (onClear)="clearCompleted()"
   ></app-todo-footer>
 </section>

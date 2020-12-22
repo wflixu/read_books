@@ -23,13 +23,13 @@ export class TodoComponent implements OnInit {
   filter: string = 'ALL';
 
   constructor(
-    private service: TodoService,
+    private todoService: TodoService,
     private route: ActivatedRoute,
     private router: Router,
     @Inject('auth') private authService,
     private store$: Store<AppState>
   ) {
-    const fetchData$ = this.service.getTodos().pipe(
+    const fetchData$ = this.todoService.getTodos().pipe(
       mergeMap(
         todos => {
           this.store$.dispatch(FETCH_FROM_API({ todos }));
@@ -59,27 +59,33 @@ export class TodoComponent implements OnInit {
   }
 
   ngOnInit() {
+    //  this.route.params.pipe(
+    //    pluck('filter')
+    //  ).subscribe(value=>{
+    //    const filterType =  value as string;
+    //    this.store$.dispatch({type:filterType});
+    //  })
   }
 
   addTodo() {
-    this.service.addTodo(this.desc);
+    this.todoService.addTodo(this.desc);
     this.desc = '';
   }
 
   removeTodo(todo: Todo) {
-    this.service.deleteTodo(todo);
+    this.todoService.deleteTodo(todo);
   }
 
 
   toggleTodo(todo: Todo) {
-    this.service.toggleTodo(todo);
+    this.todoService.toggleTodo(todo);
   }
 
   toggleAll() {
-    this.service.toggleAll();
+    this.todoService.toggleAll();
   }
   clearCompleted() {
-    // this.service.clearCompleted();
+    // this.todoService.clearCompleted();
   }
 
 

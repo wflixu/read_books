@@ -15,8 +15,6 @@ export class LoginComponent implements OnInit {
 
   constructor(@Inject('auth') private service, private router: Router, private fb: FormBuilder) { }
 
-
-
   getErrorMessage() {
     return '';
   }
@@ -35,7 +33,8 @@ export class LoginComponent implements OnInit {
     this.service.loginWithCredentials(userName, password)
       .subscribe((auth: Auth) => {
         if (!auth.hasError) {
-          this.router.navigate(['todo']);
+
+          this.router.navigate(['todos/ALL']);
 
         } else {
           this.router.navigate(['./login']);
