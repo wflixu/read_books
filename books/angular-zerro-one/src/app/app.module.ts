@@ -28,7 +28,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 
 import { todoReducer, todoFilterReducer } from './pages/todo/todo.reducer';
-import { counterReducer } from './counter.reducer';
+import { counterReducer } from './pages/playground/counter/counter.reducer';
 import { AuthService } from './core/auth.service';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SignPageComponent } from './pages/sign-page/sign-page.component';
@@ -38,6 +38,8 @@ import zh from '@angular/common/locales/zh';
 import { authReducer } from './core/auth.reducer';
 import { AuthGuardService } from './core/auth-guard.service';
 import { X_LC_ID, X_LC_KEY } from './core/net';
+import { booksReducer } from './pages/playground/books/books.reducer';
+import { collectionReducer } from './pages/playground/books/collection.reducer';
 
 registerLocaleData(zh);
 
@@ -63,18 +65,16 @@ registerLocaleData(zh);
     NzBreadCrumbModule,
     NzIconModule,
     NzMenuModule,
-    // MatInputModule,
-    // MatFormFieldModule,
-    // MatButtonModule,
     CoreModule,
     TodoModule,
     AppRoutingModule,
-    // NgZorroAntdModule,
     StoreModule.forRoot({
       count: counterReducer,
       todos: todoReducer,
       auth: authReducer,
       todoFilter: todoFilterReducer,
+      books: booksReducer,
+      collection: collectionReducer
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
@@ -88,8 +88,8 @@ registerLocaleData(zh);
     },
     UserService,
     AuthGuardService,
-    { provide: X_LC_ID, useValue: 'edawgkVY8XvUY5oWtvmzRH6ylj-gzGzoHsz' },
-    { provide: X_LC_KEY, useValue: 'erGJnJ1a8KVnaVLquMKj6uSllD' },
+    { provide: X_LC_ID, useValue: 'awgkVY8XvUY5oWtvmzRH6ylj-gzGzoHsz' },
+    { provide: X_LC_KEY, useValue: 'GJnJ1a8KVnaVLquMKj6uSllD' },
     {
       provide: 'urls',
       useValue: {

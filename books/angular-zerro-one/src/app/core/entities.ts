@@ -1,3 +1,5 @@
+
+
 export interface Todo {
   objectId?: string;
   desc: string;
@@ -26,4 +28,14 @@ export interface AppState {
   todoFilter: any;
   auth: Auth;
   count: number;
+  books: ReadonlyArray<Book>;
+  collection: ReadonlyArray<string>;
+}
+
+export interface Book {
+  id: string;
+  volumeInfo: {
+    title: string;
+    authors: Array<string>;
+  };
 }

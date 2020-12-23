@@ -38,9 +38,11 @@
           <li nz-menu-item>Team 2</li>
         </ul>
       </li>
-      <li nz-menu-item>
-        <i nz-icon nzType="file"></i>
-        <span>File</span>
+      <li nz-submenu nzTitle="playground" routerLink="/playground">
+        <ul>
+          <li nz-menu-item routerLink="/playground/books">books</li>
+          <li nz-menu-item>Team 2</li>
+        </ul>
       </li>
     </ul>
   </nz-sider>
