@@ -29,3 +29,5 @@ function remove (arr,item){
         }
     }
 }
+
+exports.Dep = Dep;

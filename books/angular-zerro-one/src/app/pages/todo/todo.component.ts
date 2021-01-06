@@ -85,11 +85,8 @@ export class TodoComponent implements OnInit {
     this.todoService.toggleAll();
   }
   clearCompleted() {
-    // this.todoService.clearCompleted();
+    this.todoService.clearCompleted();
   }
-
-
-
 
   onTextChanges(value) {
     this.desc = value;

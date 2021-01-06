@@ -16,11 +16,11 @@ export default class Watcher {
         this.value = this.get();
         this.cb.call(this.vm,this.value,oldValue)
     }
-    
+
 }
 
 const bailRE = /[^\w.$]/;
-export function parsePth(path){
+export function parsePath(path){
     if(bailRE.test(path)){
         return;
     }
@@ -35,3 +35,6 @@ export function parsePth(path){
         return obj;
     }
 }
+
+exports.parsePath = parsePath; 
+exports.Watcher = Watcher;

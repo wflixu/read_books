@@ -4,9 +4,9 @@
     <strong>{{itemCount}}</strong> {{itemCount == 1 ? 'item' : 'items'}} left
   </span>
   <ul class="filters">
-    <li><a routerLink="/todo/ALL">All</a></li>
-    <li><a routerLink="/todo/ACTIVE">Active</a></li>
-    <li><a routerLink="/todo/COMPLETED">Completed</a></li>
+    <li><a routerLink="/todos/ALL" routerLinkActive="active">All</a></li>
+    <li><a routerLink="/todos/ACTIVE" routerLinkActive="active">Active</a></li>
+    <li><a routerLink="/todos/COMPLETED" routerLinkActive="active">Completed</a></li>
   </ul>
   <button class="clear-completed" (click)="onClick()">Clear completed</button>
 </footer>

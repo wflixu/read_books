@@ -7,7 +7,7 @@ import {
 
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable, from } from 'rxjs';
-import { catchError, map, mergeMap, filter, tap } from 'rxjs/operators';
+import { catchError, map, mergeMap, filter, tap, last, finalize } from 'rxjs/operators';
 
 import { Todo, AppState, Auth } from './../../core/entities';
 import {
@@ -27,7 +27,7 @@ export interface leanRes {
   providedIn: 'root',
 })
 export class TodoService {
-  private baseUrl:string;
+  private baseUrl: string;
   private headers: HttpHeaders;
   private user;
   private auth$: Observable<Auth>;
@@ -42,9 +42,9 @@ export class TodoService {
     this.baseUrl = this.urls.classes;
     this.user = this.authService.getUser();
     this.headers = this.userService.getHttpHeaders();
-    this.auth$ = this.store$.select('auth').pipe(
-      filter((auth) => auth.user !== null)
-    );
+    this.auth$ = this.store$
+      .select('auth')
+      .pipe(filter((auth) => auth.user !== null));
   }
   addTodo(todoDesc: string) {
     let todo = {
@@ -53,11 +53,9 @@ export class TodoService {
       userId: this.user.userId,
     };
     return this.http
-      .post(this.baseUrl + 'Todo', JSON.stringify(todo),
-      {
-        headers:  this.headers,
-      }
-      )
+      .post(this.baseUrl + 'Todo', JSON.stringify(todo), {
+        headers: this.headers,
+      })
       .pipe(
         map((res: any) => {
           console.log(res);
@@ -105,16 +103,52 @@ export class TodoService {
       .pipe(
         mergeMap((todos) => {
           return from(todos);
-        })
+        }),
+        mergeMap((todo) => {
+          console.warn('toggle-!!!!!!!!!', todo);
+          const url = `${this.baseUrl}${'Todo'}/${todo.objectId}`;
+          let updateTodo = {
+            ...todo,
+            createdAt: null,
+            completed: !todo.completed,
+            updatedAt: null,
+          };
+          delete updateTodo['createdAt'];
+          delete updateTodo['updatedAt'];
+
+          return this.http
+            .put(url, JSON.stringify(updateTodo), {
+              headers: this.headers,
+            })
+            .pipe(
+              tap(() => {
+                console.log('!!!!!!!!!!!!!!!!!!!!');
+              })
+            );
+        }),
+        last(),
+        finalize(() => console.log('Sequence complete'))
       )
-      .subscribe((todo) => {
-        console.log(todo);
-        // this.toggleTodo(todo);
+      .subscribe(() => {
+        console.log('@@@@@@@@@@@');
+        this.store$.dispatch(TOGGLE_ALL());
       });
   }
 
   public clearCompleted() {
-    this.getTodos();
+    this.getTodos().pipe(
+      mergeMap(
+        (todos): Observable<Todo> => {
+          return from(todos).pipe(filter((t) => t.completed));
+        }
+      ),
+      mergeMap((todo) => {
+        const url = `${this.baseUrl}${'Todo'}/${todo.objectId}`;
+       return this.http.delete(url, { headers: this.headers });
+      })
+    ).subscribe(()=>{
+      this.store$.dispatch(CLEAR_COMPLETED());
+    });
   }
 
   getTodos(): Observable<Todo[]> {

@@ -1,4 +1,5 @@
-import Dep from './dep.js';
+// import Dep from './dep.js';
+const {Dep} = require('../dep.js');
 
 function defineReactive(data, key, val) {
     let dep = new Dep();

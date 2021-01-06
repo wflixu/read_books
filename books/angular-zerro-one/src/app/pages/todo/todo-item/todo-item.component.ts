@@ -13,9 +13,6 @@ export class TodoItemComponent implements OnInit {
   @Output() onRemoveTriggered = new EventEmitter<boolean>();
 
   constructor() { }
-
-
-
   ngOnInit() {}
 
   toggle() {
