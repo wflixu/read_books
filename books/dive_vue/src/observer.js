@@ -1,17 +1,19 @@
-const {arrayMethods} = require('./arrayMethods');
+import { arrayMethods } from './arrayMethods.js';
+
+import { Dep } from './dep.js'
 
 const hasProto = '__proto__' in {};
 const arrayKeys = Object.getOwnPropertyNames(arrayMethods);
-class Observer {
+export class Observer {
     constructor(value) {
         this.value = value;
         this.dep = new Dep();
         def(value, '__ob__', this);
 
         if (Array.isArray(value)) {
-            const augment = hasProto? protoAugment:copyAugment;
+            const augment = hasProto ? protoAugment : copyAugment;
             augment(value, arrayMethods, arrayKeys);
-        }else {
+        } else {
             this.walk(value);
         }
     }
@@ -25,18 +27,18 @@ class Observer {
 
 }
 
-function protoAugment (target, src, keys){
+function protoAugment(target, src, keys) {
     target.__proto__ = src;
 }
 
-function copyAugment(target, src, keys){
-    for (let i = 0,l=keys.length;i<l;i++){
+function copyAugment(target, src, keys) {
+    for (let i = 0, l = keys.length; i < l; i++) {
         const key = keys[i];
         def(target, key, src[key]);
     }
 }
 
-function defineReactive(data, key, val) {
+export function defineReactive(data, key, val) {
     if (typeof val === 'object') {
         new Observer(val);
     }
@@ -46,13 +48,15 @@ function defineReactive(data, key, val) {
         enumberable: true,
         configurable: true,
         get: function () {
+            console.log('get---')
             dep.depend();
-            if(childOb) {
+            if (childOb) {
                 childOb.dep.depend();
             }
             return val;
         },
         set: function (newVal) {
+            console.log('setvalue',newVal);
             if (val === newVal) {
                 return
             }
@@ -62,23 +66,23 @@ function defineReactive(data, key, val) {
     })
 }
 
-function def (obj, key, val, enumberable){
-    Object.defineProperty(obj,key ,{
-        value:val,
-        enumberable:!!enumberable,
-        writable:true,
-        configurable:true
+function def(obj, key, val, enumberable) {
+    Object.defineProperty(obj, key, {
+        value: val,
+        enumberable: !!enumberable,
+        writable: true,
+        configurable: true
     })
 }
 
-function observe (value, asRootData){
-    if(!isObject(value)){
+function observe(value, asRootData) {
+    if (!isObject(value)) {
         return;
     }
     let ob;
-    if(hasOwn('__ob__') && value.__ob__ instanceof Observer){
+    if (hasOwn('__ob__') && value.__ob__ instanceof Observer) {
         ob = value.__ob__;
-    }else {
+    } else {
         ob = new Observer(value);
     }
     return ob;
@@ -86,3 +90,4 @@ function observe (value, asRootData){
 
 exports.Observer = Observer;
 exports.defineReactive = defineReactive;
+

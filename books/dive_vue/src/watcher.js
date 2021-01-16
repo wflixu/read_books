@@ -1,4 +1,4 @@
-export default class Watcher {
+export class Watcher {
     constructor(vm,expOrFn,cb) {
         this.vm = vm;
         this.getter = parsePath(expOrFn);
@@ -35,6 +35,3 @@ export function parsePath(path){
         return obj;
     }
 }
-
-exports.parsePath = parsePath; 
-exports.Watcher = Watcher;

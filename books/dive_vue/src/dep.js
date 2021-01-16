@@ -1,4 +1,4 @@
-export default class Dep {
+export  class Dep {
     constructor(){
         this.subs = []; 
     }
@@ -29,5 +29,3 @@ function remove (arr,item){
         }
     }
 }
-
-exports.Dep = Dep;

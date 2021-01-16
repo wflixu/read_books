@@ -1,9 +1,9 @@
 const arrayProto = Array.prototype;
-const arrayMethods = Ojbect.create(arrayProto);
+export const arrayMethods = Object.create(arrayProto);
 
 ['push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse'].forEach(method=>{
     const original = arrayProto[method];
-    Ojbect.define(arrayMethods,method,{
+    Object.defineProperty(arrayMethods,method,{
         value: function mutator (...args) {
             return original.apply(this, args);
         },
@@ -12,6 +12,3 @@ const arrayMethods = Ojbect.create(arrayProto);
         writable:true
     })
 })
-
-
-epxports.arrayMethods = arrayMethods;

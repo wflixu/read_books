@@ -1,4 +1,4 @@
-class List {
+export class List {
     constructor() {
         this.listSize = 0;
         this.pos = 0;
@@ -69,8 +69,34 @@ class List {
     contains(item) {
         return this.dataStore.indexOf(item) > -1;
     }
-
-
-
 }
-module.exports = List; 
+
+
+export class Stack {
+    constructor() {
+        this.dataStore = [];
+        this.top = 0;
+
+    }
+
+    push(item) {
+        this.dataStore[this.top++] = item;
+    }
+    pop(){
+        return this.dataStore[--this.top];
+    }
+    peek(){
+        return this.dataStore[this.top-1];
+    }
+    length(){
+        return this.top;
+    }
+    clear(){
+        this.top = 0;
+    }
+}
+
+
+
+
+// module.exports = List; 
