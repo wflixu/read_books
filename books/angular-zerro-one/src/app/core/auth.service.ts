@@ -35,6 +35,16 @@ export class AuthService {
   getAuth(): Observable<Auth> {
     return this.store$.select(appState => appState.auth);
   }
+  test():void {
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json',
+    });
+     this.http.get('https://getman.cn/mock/login',{
+      headers,
+     }).subscribe(respon=>{
+       console.log(respon)
+     })
+  }
 
   unAuth(): void {
      this.store$.dispatch(loginOut())

@@ -26,6 +26,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  test():void{
+     this.service.test();
+  }
+
   submitForm(): void {
     console.log(this.validateForm);
     const { userName, password } = this.validateForm.value;

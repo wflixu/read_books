@@ -57,7 +57,7 @@ export class List {
     length() {
         return this.dataStore.length;
     }
-    curPos() { 
+    curPos() {
         return this.pos;
     }
     moveTo(position) {
@@ -82,19 +82,50 @@ export class Stack {
     push(item) {
         this.dataStore[this.top++] = item;
     }
-    pop(){
+    pop() {
         return this.dataStore[--this.top];
     }
-    peek(){
-        return this.dataStore[this.top-1];
+    peek() {
+        return this.dataStore[this.top - 1];
     }
-    length(){
+    length() {
         return this.top;
     }
-    clear(){
+    clear() {
         this.top = 0;
     }
 }
+
+export class Queue {
+    constructor() {
+        this.dataStore = [];
+    }
+    enqueue(item) {
+        this.dataStore.push(item);
+    }
+    dequeue() {
+        return this.dataStore.shift();
+    }
+    front() {
+        return this.dataStore[0];
+    }
+    back() {
+        return this.dataStore[this.dataStore.length - 1];
+    }
+    toString() {
+        let resStr = '';
+        for (let i = 0; i < this.dataStore.length; i++) {
+            resStr += this.dataStore[i] + '\n';
+        }
+        return resStr;
+    }
+    empty() {
+        return this.dataStore.length === 0;
+    }
+}
+
+
+
 
 
 
