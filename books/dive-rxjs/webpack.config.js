@@ -42,4 +42,7 @@ module.exports = {
             title: 'rxjs play',
         }),
     ],
+    resolve: {
+        extensions: ['.js', '.ts', '.jsx', '.tsx','.json']
+      }
 };
