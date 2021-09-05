@@ -1,0 +1,12 @@
+{
+  "name": "beginning_functional",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node src/main.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
