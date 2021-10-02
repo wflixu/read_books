@@ -3,8 +3,13 @@ import { FaStar } from "react-icons/fa"
 
 const createArray = (length) => [...Array(length)]
 
-export default function StarRating({ style = {}, totalStars = 5, ...props }) {
-  const [selectStars, setSelectStar] = useState(0)
+export default function StarRating({
+  style = {},
+  totalStars = 5,
+  selectStars = 0,
+  onRate = (f) => f,
+  ...props
+}) {
   return (
     <div style={{ padding: "5px", ...style }} {...props}>
       {createArray(totalStars).map((n, i) => {
@@ -12,7 +17,7 @@ export default function StarRating({ style = {}, totalStars = 5, ...props }) {
           <Star
             key={i}
             selected={selectStars > i}
-            onSelect={() => setSelectStar(i + 1)}
+            onSelect={() => onRate(i + 1)}
           />
         )
       })}
