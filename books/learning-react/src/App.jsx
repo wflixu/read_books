@@ -1,24 +1,22 @@
-import { useState, useEffect, useLayoutEffect } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React, { useState, useEffect, useLayoutEffect } from "react"
 
-import StarRating from './StarRating'
+import "./App.css"
+import colorData from "./data/color-data.json"
+
+import { ColorList } from "./chap6/ColorList"
+
+import StarRating from "./StarRating"
 
 function App() {
-
-
+  const [colors] = useState(colorData)
   useEffect(() => {
-    console.log('useEffect');
+    console.log("useEffect")
   })
 
   useLayoutEffect(() => {
-    console.log('useLayoutEffect');
+    console.log("useLayoutEffect")
   })
-  return (
-    <div className="App">
-      <StarRating></StarRating>
-    </div>
-  )
+  return <ColorList colors={colors} />
 }
 
 export default App

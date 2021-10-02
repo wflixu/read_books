@@ -20,6 +20,7 @@ module.exports = {
   rules: {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "prettier/prettier": "warn"
+    "prettier/prettier": "warn",
+    "react/prop-types": 0
   }
 };
