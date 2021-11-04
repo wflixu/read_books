@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-export function Login({ setUser }) {
+export function Login({ dispatch }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        setUser(username);
+        dispatch({ type: 'LOGIN', username })
     };
 
     return (

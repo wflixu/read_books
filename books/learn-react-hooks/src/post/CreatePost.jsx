@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
-export default function CreatePost({ user, posts, setPosts }) {
+export default function CreatePost({ user, posts, dispatch }) {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
 
 
     const handleCreate = (e) => {
         e.preventDefault();
-        const newPost = { title, content, author: user };
-        setPosts([newPost, ...posts])
+
+        dispatch({ type: 'CREATE_POST', title, content, author: user })
         setTitle('');
         setContent('');
     }
