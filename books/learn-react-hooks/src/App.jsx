@@ -12,7 +12,8 @@ import UserBar from './user/userbar';
 import PostList from './post/PostList'
 import CreatePost from './post/CreatePost';
 import appReducer from './reducers'
-
+import Header from './Header'
+import { ThemeContext } from './contexts'
 
 const defaultPosts = [
   { title: 'React Hooks', content: 'The greatest thing since sliced bread!', author: 'Daniel Bugl' },
@@ -22,27 +23,30 @@ const defaultPosts = [
 
 function App() {
 
-  
+
   const [state, dispatch] = useReducer(appReducer, {
     user: '', posts: defaultPosts
   });
 
-  const {user,posts} = state;
+  const { user, posts } = state;
 
-  useEffect(()=>{
-    if(user){
+  useEffect(() => {
+    if (user) {
       document.title = `${user} - react hooks blog`;
-    }else {
+    } else {
       document.title = ` react hooks blog`;
     }
-  },[user]);
+  }, [user]);
 
 
-  
+
 
 
   return (
     <div className="App">
+      <ThemeContext.Provider value={{ primaryColor: 'deepskyblue', secondaryColor: 'coral' }}>
+        <Header text="hello world!" />
+      </ThemeContext.Provider>
       <UserBar user={user} dispatch={dispatch} />
       <br />
       <hr />
@@ -53,6 +57,8 @@ function App() {
     </div>
   )
 }
+
+
 
 
 
