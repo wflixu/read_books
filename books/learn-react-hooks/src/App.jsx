@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import ReactDOM from 'react-dom'
 import logo from './logo.svg'
 import './App.css'
@@ -22,12 +22,23 @@ const defaultPosts = [
 
 function App() {
 
-
+  
   const [state, dispatch] = useReducer(appReducer, {
     user: '', posts: defaultPosts
   });
 
   const {user,posts} = state;
+
+  useEffect(()=>{
+    if(user){
+      document.title = `${user} - react hooks blog`;
+    }else {
+      document.title = ` react hooks blog`;
+    }
+  },[user]);
+
+
+  
 
 
   return (
