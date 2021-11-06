@@ -21,7 +21,8 @@ function postsReducer(state, action) {
         author: action.author,
       };
       return [newPost, ...state];
-
+    case 'FETCH_POSTS':
+      return action.posts;
     default:
       return state;
   }

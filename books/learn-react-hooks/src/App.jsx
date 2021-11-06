@@ -26,7 +26,7 @@ function App() {
 
 
   const [state, dispatch] = useReducer(appReducer, {
-    user: '', posts: defaultPosts
+    user: '', posts: []
   });
 
   const { user, posts } = state;
@@ -38,6 +38,14 @@ function App() {
       document.title = ` react hooks blog`;
     }
   }, [user]);
+
+  useEffect(() => {
+    fetch('/api/posts').then(result => {
+      return result.json();
+    }).then(res => {
+      dispatch({ type: 'FETCH_POSTS', posts: res })
+    });
+  },[]);
 
   const [theme, setTheme] = useState({
     primaryColor: 'deepskyblue', secondaryColor: 'coral'
