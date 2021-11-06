@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import { ThemeContext } from '../contexts';
 
 
 
-export default function Post({ title, content, author, key }) {
+function Post({ title, content, author, key }) {
     const { secondaryColor } = useContext(ThemeContext);
+    console.log(title + ':post render');
     return (
         <div >
             <h3 style={{ color: secondaryColor }}>{title}</h3>
@@ -17,3 +18,7 @@ export default function Post({ title, content, author, key }) {
         </div>
     )
 }
+
+export default memo(Post, (prev, next) => {
+    return prev.title == next.title && prev.content == prev.content;
+})

@@ -23,7 +23,7 @@ export function Login() {
                 setLoginFailed(false);
                 dispatch({
                     type: 'LOGIN',
-                    username: user.data.username
+                    username: user.data[0].username
                 });
             } else {
                 setLoginFailed(true);
