@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { StateContext } from '../contexts';
 
 
-export default function Register({ dispatch }) {
+export default function Register() {
+    const {dispatch} = useContext(StateContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');

@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { StateContext } from '../contexts';
 
-export function Login({ dispatch }) {
+export function Login() {
+
+    const { dispatch } = useContext(StateContext);
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        dispatch({ type: 'LOGIN', username })
+        dispatch({ type: 'LOGIN', username });
     };
 
     return (

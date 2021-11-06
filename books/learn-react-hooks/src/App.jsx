@@ -13,7 +13,8 @@ import PostList from './post/PostList'
 import CreatePost from './post/CreatePost';
 import appReducer from './reducers'
 import Header from './Header'
-import { ThemeContext } from './contexts'
+import { ThemeContext, StateContext } from './contexts'
+import ChangeTheme from './ChangeTheme'
 
 const defaultPosts = [
   { title: 'React Hooks', content: 'The greatest thing since sliced bread!', author: 'Daniel Bugl' },
@@ -38,22 +39,32 @@ function App() {
     }
   }, [user]);
 
+  const [theme, setTheme] = useState({
+    primaryColor: 'deepskyblue', secondaryColor: 'coral'
+  });
+
+
+
 
 
 
 
   return (
     <div className="App">
-      <ThemeContext.Provider value={{ primaryColor: 'deepskyblue', secondaryColor: 'coral' }}>
-        <Header text="hello world!" />
-      </ThemeContext.Provider>
-      <UserBar user={user} dispatch={dispatch} />
-      <br />
-      <hr />
-      {user && <CreatePost user={user} posts={posts} dispatch={dispatch} />}
-      <br />
-      <hr />
-      <PostList posts={posts} />
+      <StateContext.Provider value={{ state, dispatch }}>
+        <ThemeContext.Provider value={theme}>
+          <Header text="hello world!" />
+          <ChangeTheme theme={theme} setTheme={setTheme} />
+        </ThemeContext.Provider>
+        <UserBar />
+        <br />
+        <hr />
+        {user && <CreatePost />}
+        <br />
+        <hr />
+        <PostList posts={posts} />
+      </StateContext.Provider>
+
     </div>
   )
 }

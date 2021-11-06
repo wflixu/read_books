@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { StateContext } from '../contexts';
 
-export default function CreatePost({ user, posts, dispatch }) {
+export default function CreatePost() {
+    const {state,dispatch} = useContext(StateContext);
+    const  {user,posts} = state;
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
 
