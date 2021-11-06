@@ -15,37 +15,47 @@ import appReducer from './reducers'
 import Header from './Header'
 import { ThemeContext, StateContext } from './contexts'
 import ChangeTheme from './ChangeTheme'
+import { useResource } from 'react-request-hook'
 
-const defaultPosts = [
-  { title: 'React Hooks', content: 'The greatest thing since sliced bread!', author: 'Daniel Bugl' },
-  { title: 'Using React Fragments', content: 'Keeping the DOM tree clean!', author: 'Daniel Bugl' }
-]
+
 
 
 function App() {
 
 
   const [state, dispatch] = useReducer(appReducer, {
-    user: '', posts: []
+    user: '', posts: [], error: ''
   });
 
-  const { user, posts } = state;
+  const { user, error } = state;
 
   useEffect(() => {
+   
     if (user) {
       document.title = `${user} - react hooks blog`;
     } else {
       document.title = ` react hooks blog`;
     }
   }, [user]);
+  const [posts, getPosts] = useResource(() => {
+    return {
+      url: '/posts',
+      method: 'get'
+    }
+  });
 
+  useEffect(getPosts, []);
   useEffect(() => {
-    fetch('/api/posts').then(result => {
-      return result.json();
-    }).then(res => {
-      dispatch({ type: 'FETCH_POSTS', posts: res })
-    });
-  },[]);
+    if (posts && posts.error) {
+      dispatch({ type: 'POSTS_ERROR' })
+    }
+    if (posts && posts.data) {
+      dispatch({
+        type: 'FETCH_POSTS',
+        posts: posts.data.reverse()
+      });
+    }
+  }, [posts])
 
   const [theme, setTheme] = useState({
     primaryColor: 'deepskyblue', secondaryColor: 'coral'
@@ -70,7 +80,9 @@ function App() {
         {user && <CreatePost />}
         <br />
         <hr />
-        <PostList posts={posts} />
+        <PostList posts={posts} >
+          {error &&  <b>{error}</b> }
+        </PostList>
       </StateContext.Provider>
 
     </div>

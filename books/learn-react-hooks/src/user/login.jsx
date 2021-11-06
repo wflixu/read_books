@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useResource } from 'react-request-hook';
 import { StateContext } from '../contexts';
 
 export function Login() {
@@ -7,10 +8,39 @@ export function Login() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [loginFailed, setLoginFailed] = useState(false);
 
+
+
+    const [user, login] = useResource((username, password) => ({
+        url: `/login/${encodeURI(username)}/${encodeURI(password)}`,
+        method: 'get'
+    }));
+
+    useEffect(() => {
+        if (user && user.data) {
+            if (user.data.length > 0) {
+                setLoginFailed(false);
+                dispatch({
+                    type: 'LOGIN',
+                    username: user.data.username
+                });
+            } else {
+                setLoginFailed(true);
+            }
+        }
+        if (user && user.error) {
+            setLoginFailed(true);
+        }
+
+    }, [user])
+
+    const handlePassword = (evt) => {
+
+    }
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        dispatch({ type: 'LOGIN', username });
+        login(username, password);
     };
 
     return (
@@ -20,6 +50,7 @@ export function Login() {
             <label htmlFor="login-password">Password:</label>
             <input type="password" name="login-password" id="login-password" value={password} onChange={evt => setPassword(evt.target.value)} />
             <input type="submit" value="Login" disabled={username.length === 0} />
+            {loginFailed && (<div style={{ color: 'red' }}>invalid username or password</div>)}
         </form>
     )
 }
