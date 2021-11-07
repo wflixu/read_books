@@ -16,9 +16,25 @@ import Header from './Header'
 import { ThemeContext, StateContext } from './contexts'
 import ChangeTheme from './ChangeTheme'
 import { useResource } from 'react-request-hook'
+import HeaderBar from './pages/HeaderBar'
+import Home from './pages/Home'
+
+import { Router, View } from 'react-navi'
+import { mount, route } from 'navi'
+import PostPage from './pages/PostPage'
 
 
 
+const routes = mount({
+  '/': route({
+    view: <Home />
+  }),
+  '/view/:id': route(req => {
+    return {
+      view: <PostPage id={req.params.id} />
+    }
+  })
+})
 
 function App() {
 
@@ -29,33 +45,6 @@ function App() {
 
   const { user, error } = state;
 
-  useEffect(() => {
-
-    if (user) {
-      document.title = `${user} - react hooks blog`;
-    } else {
-      document.title = ` react hooks blog`;
-    }
-  }, [user]);
-  const [posts, getPosts] = useResource(() => {
-    return {
-      url: '/posts',
-      method: 'get'
-    }
-  });
-
-  useEffect(getPosts, []);
-  useEffect(() => {
-    if (posts && posts.error) {
-      dispatch({ type: 'POSTS_ERROR' })
-    }
-    if (posts && posts.data) {
-      dispatch({
-        type: 'FETCH_POSTS',
-        posts: posts.data.reverse()
-      });
-    }
-  }, [posts])
 
   const [theme, setTheme] = useState({
     primaryColor: 'deepskyblue', secondaryColor: 'coral'
@@ -70,21 +59,12 @@ function App() {
   return (
     <div className="App">
       <StateContext.Provider value={{ state, dispatch }}>
-        <ThemeContext.Provider value={theme}>
-          <Header text="hello world!" />
-          <ChangeTheme theme={theme} setTheme={setTheme} />
-        </ThemeContext.Provider>
-        <Suspense fallback={'loading ...'}>
-          <UserBar />
-        </Suspense>
-        <br />
-        <hr />
-        {user && <CreatePost />}
-        <br />
-        <hr />
-        <PostList posts={posts} >
-          {error && <b>{error}</b>}
-        </PostList>
+        <Router routes={routes}>
+          <HeaderBar setTheme={setTheme} />
+          <hr />
+          <View></View>
+        </Router>
+
       </StateContext.Provider>
 
     </div>

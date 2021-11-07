@@ -12,8 +12,10 @@
     "axios": "^0.24.0",
     "concurrently": "^6.3.0",
     "json-server": "^0.17.0",
+    "navi": "^0.14.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
+    "react-navi": "^0.14.4",
     "react-request-hook": "^2.1.1"
   },
   "devDependencies": {

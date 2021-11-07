@@ -14,7 +14,7 @@ export default function PostList() {
         <div>
             {posts.map((p, i) => {
                 return (<div key={'post' + i}>
-                    <Post {...p} />
+                    <Post {...p} short={true} />
                     <hr />
                 </div>)
             })}
