@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useReducer, useState, Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import logo from './logo.svg'
 import './App.css'
@@ -30,7 +30,7 @@ function App() {
   const { user, error } = state;
 
   useEffect(() => {
-   
+
     if (user) {
       document.title = `${user} - react hooks blog`;
     } else {
@@ -74,14 +74,16 @@ function App() {
           <Header text="hello world!" />
           <ChangeTheme theme={theme} setTheme={setTheme} />
         </ThemeContext.Provider>
-        <UserBar />
+        <Suspense fallback={'loading ...'}>
+          <UserBar />
+        </Suspense>
         <br />
         <hr />
         {user && <CreatePost />}
         <br />
         <hr />
         <PostList posts={posts} >
-          {error &&  <b>{error}</b> }
+          {error && <b>{error}</b>}
         </PostList>
       </StateContext.Provider>
 

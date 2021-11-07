@@ -6,10 +6,11 @@
     "build": "vite build",
     "serve": "vite preview",
     "mock": "json-server --watch server/db.json --port 4000 --routes server/routes.json",
-    "start": "concurrently \"npm run mock\" \"npm run dev\""
+    "start": "npx concurrently \"npm run mock\" \"npm run dev\""
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "concurrently": "^6.3.0",
     "json-server": "^0.17.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
