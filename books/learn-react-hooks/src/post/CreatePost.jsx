@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { useNavigation } from 'react-navi';
 import { useResource } from 'react-request-hook';
 import { StateContext } from '../contexts';
 
@@ -8,7 +9,9 @@ export default function CreatePost() {
     const { state, dispatch } = useContext(StateContext);
     const { user, posts } = state;
     const [title, setTitle] = useState('')
-    const [content, setContent] = useState('')
+    const [content, setContent] = useState('');
+
+    const navigation = useNavigation();
 
     const [post, createPost] = useResource(({ title, content, author }) => ({
         url: '/posts',
@@ -21,7 +24,8 @@ export default function CreatePost() {
             dispatch({
                 type: 'CREATE_POST',
                 ...post.data,
-            })
+            });
+            navigation.navigate(`/view/${post.data.id}`);
         }
     }, [post])
 
@@ -32,6 +36,8 @@ export default function CreatePost() {
         setTitle('');
         setContent('');
     }
+
+    
 
     return (
         <form onSubmit={handleCreate}>

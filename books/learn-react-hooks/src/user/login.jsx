@@ -6,8 +6,8 @@ export function Login() {
 
     const { dispatch } = useContext(StateContext);
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('test');
+    const [password, setPassword] = useState('123');
     const [loginFailed, setLoginFailed] = useState(false);
 
 

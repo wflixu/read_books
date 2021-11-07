@@ -22,6 +22,7 @@ import Home from './pages/Home'
 import { Router, View } from 'react-navi'
 import { mount, route } from 'navi'
 import PostPage from './pages/PostPage'
+import FooterBar from './pages/FooterBar'
 
 
 
@@ -55,7 +56,6 @@ function App() {
 
 
 
-
   return (
     <div className="App">
       <StateContext.Provider value={{ state, dispatch }}>
@@ -63,8 +63,8 @@ function App() {
           <HeaderBar setTheme={setTheme} />
           <hr />
           <View></View>
+          <FooterBar></FooterBar>
         </Router>
-
       </StateContext.Provider>
 
     </div>
