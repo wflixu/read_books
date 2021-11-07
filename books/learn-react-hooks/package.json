@@ -15,6 +15,7 @@
     "navi": "^0.14.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
+    "react-hookedup": "^0.1.2",
     "react-navi": "^0.14.4",
     "react-request-hook": "^2.1.1"
   },
