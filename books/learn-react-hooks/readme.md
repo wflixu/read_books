@@ -4,3 +4,10 @@ context 不要用它来传递 频繁变更的数据，因为频繁变更的数�
 
 
 
+# chap9
+hooks 只能在函数组件的顶层调用，不能在条件，循环语句中
+
+自定义的hooks 使用use开头
+
+使用eslint- plugin-react-hooks 检查是否遵守这些规则；
+

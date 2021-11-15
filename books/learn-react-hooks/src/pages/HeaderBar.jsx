@@ -1,6 +1,7 @@
 import React, { Suspense, useContext } from 'react';
-import ChangeTheme from '../ChangeTheme';
+import useWindowSize from '@rehooks/window-size';
 
+import ChangeTheme from '../ChangeTheme';
 import { ThemeContext, StateContext } from '../contexts';
 import Header from '../Header';
 import CreatePost from '../post/CreatePost';
@@ -11,6 +12,11 @@ function HeaderBar({ setTheme }) {
     const theme = useContext(ThemeContext);
     const { state, dispatch } = useContext(StateContext);
     const { user } = state;
+
+    const { innerWidth } = useWindowSize();
+
+    const mobilePhone = innerWidth < 640;
+    
 
     return (
         <div>
@@ -23,7 +29,7 @@ function HeaderBar({ setTheme }) {
             </Suspense>
             <br />
             <hr />
-            {user && <CreatePost/>}
+            {user && <CreatePost />}
         </div>
     )
 }
