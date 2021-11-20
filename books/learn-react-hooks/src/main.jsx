@@ -8,12 +8,16 @@ const http = axios.create({
   baseURL: 'http://localhost:3000/api/'
 })
 
+import { Provider } from 'react-redux'
+import ConnectedApp from './ConnectedApp'
+
+import { store } from './store';
+
 ReactDOM.render(
   <React.StrictMode>
-    <RequestProvider value={http}>
-      <App />
-    </RequestProvider>
-
+    <Provider store={store}>
+        <ConnectedApp />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 )

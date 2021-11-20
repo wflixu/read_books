@@ -25,6 +25,8 @@ import PostPage from './pages/PostPage'
 import FooterBar from './pages/FooterBar'
 import Todo from './todo'
 
+import {createStore} from 'redux';
+
 
 const routes = mount({
   '/': route({
@@ -36,6 +38,8 @@ const routes = mount({
     }
   })
 })
+
+
 
 function App() {
 

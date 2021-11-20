@@ -1,60 +1,40 @@
 
 
-import React, { Component, useReducer, useEffect, useMemo } from 'react';
+import React, { Component, useReducer, useEffect, useMemo, useState } from 'react';
 import Header from './Header';
-import AddTodo from './AddTodo';
-import TodoFilter from './TodoFilter';
-import TodoList from './TodoList';
-import StateContext from './StateContext';
+
 import { fetchAPITodos, generateID } from '../api';
 import appReducer from './reducer';
 
+import ConnectedAddTodo from '../containers/ConnectedAddTodo'
+import ConnectedTodoList from '../containers/ConnectedTodoList'
+import ConnectedTodoFilter from '../containers/ConnectedTodoFilter'
+
+const initialState = { todos: [], filter: 'all' };
+import {store} from '../store'
+
 
 function Todo() {
-    const [state, dispatch] = useReducer(appReducer, { todos: [], filter: 'all' })
+    const [state, setState] = useState(initialState)
+
     useEffect(() => {
-        fetchAPITodos().then((todos) =>
-            dispatch({ type: 'FETCH_TODOS', todos })
-        )
+        const unsubscribe = store.subscribe(() => setState(store.getState()))
+        return unsubscribe
     }, [])
 
 
-    const filteredTodos = useMemo(() => {
-        const { filter, todos } = state
-        switch (filter) {
-            case 'active':
-                return todos.filter(t => t.completed === false)
-            case 'completed':
-                return todos.filter(t => t.completed === true)
 
-            default:
-            case 'all':
-                return todos
-        }
-    }, [state])
-    function addTodo(title) {
-        dispatch({ type: 'ADD_TODO', title })
-    }
-    function toggleTodo(id) {
-        dispatch({ type: 'TOGGLE_TODO', id })
-    }
-    function removeTodo(id) {
-        dispatch({ type: 'REMOVE_TODO', id })
-    }
-    function filterTodos(filter) {
-        dispatch({ type: 'FILTER_TODOS', filter })
-    }
+    
 
     return (
-        <StateContext.Provider value={filteredTodos}>
-            <div style={{ width: '400px' }}>
-                <Header />
-                <AddTodo addTodo={addTodo} />
-                <hr />
-                <TodoList toggleTodo={toggleTodo} removeTodo={removeTodo}></TodoList>
-                <TodoFilter filter={state.filter} filterTodos={filterTodos} />
-            </div>
-        </StateContext.Provider>
+
+        <div style={{ width: '400px' }}>
+            <Header />
+            <ConnectedAddTodo />
+            <hr />
+            <ConnectedTodoList />
+            <ConnectedTodoFilter />
+        </div>
     )
 }
 

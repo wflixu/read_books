@@ -18,7 +18,10 @@
     "react-dom": "^17.0.0",
     "react-hookedup": "^0.1.2",
     "react-navi": "^0.14.4",
-    "react-request-hook": "^2.1.1"
+    "react-redux": "^7.2.6",
+    "react-request-hook": "^2.1.1",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^1.0.0",
