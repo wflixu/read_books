@@ -3,35 +3,29 @@
 import React, { Component, useReducer, useEffect, useMemo, useState } from 'react';
 import Header from './Header';
 import { useDispatch } from 'react-redux';
-import {fetchTodos} from './../actions'
- 
+import { fetchTodos } from './../actions'
 
-import { fetchAPITodos, generateID } from '../api';
-import appReducer from './reducer';
+import { inject } from 'mobx-react'
+
 
 import AddTodo from '../components/AddTodo'
 import TodoList from '../components/TodoList'
 import TodoFilter from '../components/TodoFilter'
-import ConnectedTodoList from '../containers/ConnectedTodoList'
-import ConnectedTodoFilter from '../containers/ConnectedTodoFilter'
 
 
 
-const initialState = { todos: [], filter: 'all' };
-import {store} from '../store'
 
 
-function Todo() {
-    const dispatch = useDispatch();
-    const [state, setState] = useState(initialState)
 
+function Todo({todoStore}) {
+ 
     useEffect(() => {
-       dispatch(fetchTodos())
-    }, [dispatch])
+        todoStore.fetch();
+    }, [todoStore])
 
 
 
-    
+
 
     return (
 
@@ -45,4 +39,4 @@ function Todo() {
     )
 }
 
-export default Todo;
+export default inject('todoStore')(Todo);

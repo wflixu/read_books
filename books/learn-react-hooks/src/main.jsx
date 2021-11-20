@@ -8,16 +8,18 @@ const http = axios.create({
   baseURL: 'http://localhost:3000/api/'
 })
 
-import { Provider } from 'react-redux'
 
 
-import { store } from './store';
+import { Provider } from 'mobx-react'
+import TodoStore from './store'
+
+const store = new TodoStore();
 import Todo from './todo'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-        <Todo />
+    <Provider todoStore={store}>
+      <Todo />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

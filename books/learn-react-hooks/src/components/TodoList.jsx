@@ -1,25 +1,13 @@
 import React, { Component, useContext, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import StateContext from '../todo/StateContext';
+
+import {inject,observer} from 'mobx-react'
 import TodoItem from './TodoItem'
+function TodoList({todoStore}) {
+   
 
-
-export default function TodoList() {
-    const filter = useSelector(state=> state.filter);
-    const todos = useSelector(state=>state.todos);
-    const filteredTodos = useMemo(() => {
-        switch (filter) {
-            case 'active':
-                return todos.filter(t => t.completed === false)
-            case 'completed':
-                return todos.filter(t => t.completed === true)
-            default:
-            case 'all':
-                return todos
-        }
-    }, [filter, todos])
-
-    return filteredTodos.map(item =>
-        <TodoItem {...item} key={item.id} />
+    return todoStore.filteredTodos.map(item =>
+        <TodoItem item={item} key={item.id} />
     )
 };
+
+export default inject('todoStore')(observer(TodoList))

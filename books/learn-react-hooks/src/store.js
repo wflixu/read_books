@@ -1,6 +1,69 @@
-import { createStore, applyMiddleware } from 'redux';
+import { observable, action, computed, makeObservable } from 'mobx';
+import { fetchAPITodos, generateID } from './api';
 
-import thunk from 'redux-thunk';
-import appReducer from './todo/reducer';
+export default class TodoStore {
+  todos = [];
+  filter = 'all';
 
-export const store = createStore(appReducer, applyMiddleware(thunk));
+  constructor(value) {
+    makeObservable(this, {
+      todos: observable,
+      filter: observable,
+
+      filteredTodos: computed,
+
+      fetch: action,
+      addTodo: action,
+      toggleTodo: action,
+      removeTodo: action,
+      filterTodos: action,
+    });
+  }
+
+  get filteredTodos() {
+    switch (this.filter) {
+      case 'active':
+        return this.todos.filter((t) => t.completed === false);
+      case 'completed':
+        return this.todos.filter((t) => t.completed === true);
+      default:
+      case 'all':
+        return this.todos;
+    }
+  }
+
+  fetch() {
+    fetchAPITodos().then((fetchedTodos) => {
+      this.todos = fetchedTodos;
+    });
+  }
+
+  addTodo(title) {
+    this.todos.push({ id: generateID(), title, completed: false });
+  }
+
+  toggleTodo(id) {
+    for (let todo of this.todos) {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+        break;
+      }
+    }
+  }
+
+  removeTodo(id) {
+    let index = 0;
+    for (let todo of this.todos) {
+      if (todo.id === id) {
+        break;
+      } else {
+        index++;
+      }
+    }
+    this.todos.splice(index, 1);
+  }
+
+  filterTodos(filterName) {
+    this.filter = filterName;
+  }
+}

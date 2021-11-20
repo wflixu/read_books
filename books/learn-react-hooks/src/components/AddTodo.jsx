@@ -1,17 +1,17 @@
 import React, { Component, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTodo } from './../actions';
-function AddTodo() {
-    const dispatch = useDispatch();
-    const [input, setInput] = useState('')
 
+import { inject, observer } from 'mobx-react'
+
+function AddTodo({ todoStore }) {
+
+    const [input, setInput] = useState('');
 
     function handleInput(e) {
         setInput(e.target.value);
     }
     function handleAdd() {
         if (input) {
-            dispatch(addTodo(input));
+            todoStore.addTodo(input)
             setInput('');
         }
     }
@@ -29,4 +29,4 @@ function AddTodo() {
     )
 
 }
-export default AddTodo;
+export default inject('todoStore')(AddTodo);

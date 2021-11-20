@@ -1,38 +1,35 @@
 import React, { Component } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { inject, observer } from 'mobx-react'
 
-import { filterTodos } from '../actions'
+const TodoFilterItem = inject('todoStore')(observer(
+    function ({ name, todoStore }) {
 
-function TodoFilterItem({ name }) {
-    const dispatch = useDispatch();
-    const filter = useSelector(state => state.filter);
-    const handleFilter = () => {
-        dispatch(filterTodos(name));
+
+        const handleFilter = () => {
+            todoStore.filterTodos(name);
+        }
+
+        const style = {
+            color: 'blue',
+            cursor: 'pointer',
+            fontWeight: (todoStore.filter === name) ? 'bold' : 'normal'
+        }
+
+        return <span onClick={handleFilter} style={style}>{name}</span>
+
     }
-
-    const style = {
-        color: 'blue',
-        cursor: 'pointer',
-        fontWeight: (filter === name) ? 'bold' : 'normal'
-    }
-
-    return <span onClick={handleFilter} style={style}>{name}</span>
-
-}
+))
 
 
-function TodoFilter() {
-    // const dispatch = useDispatch();
-    // const filter = useSelector(state => state.filter);
-    // const handleFilter = () => {
-    //     dispatch(filterTodos(name));
-    // }
+
+
+function TodoFilter(props) {
 
     return (
         <div>
-            <TodoFilterItem name="all"  />{' / '}
-            <TodoFilterItem name="active"  />{' / '}
-            <TodoFilterItem name="completed"  />
+            <TodoFilterItem name="all"  {...props} />{' / '}
+            <TodoFilterItem name="active" {...props} />{' / '}
+            <TodoFilterItem name="completed" {...props} />
         </div>
     )
 
