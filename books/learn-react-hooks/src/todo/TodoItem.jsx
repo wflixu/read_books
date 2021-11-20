@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 
 class TodoList extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.handleRemove = this.handleRemove.bind(this);
-        this.handleToggle = this.handleToggle.bind(this);
     }
     handleToggle = () => {
         const { toggleTodo, id } = this.props
@@ -20,11 +18,26 @@ class TodoList extends Component {
 
         return (
             <div style={{ width: 400, height: 25 }}>
-                <input type="checkbox" checked={completed} onChange={this.handleToggle}/>
+                <input type="checkbox" checked={completed} onChange={this.handleToggle} />
                 {title}
                 <button style={{ float: 'right' }} onClick={this.handleRemove}>x</button>
             </div>
         )
     }
 }
-export default TodoList;
+export default function TodoItem({ title, completed, id, toggleTodo, removeTodo }) {
+    const handleToggle = () => {
+        toggleTodo(id)
+    }
+    const handleRemove = () => {
+        removeTodo(id)
+    }
+    return (
+        <div style={{ width: 400, height: 25 }}>
+            <input type="checkbox" checked={completed} onChange={handleToggle} />
+            {title}
+            <button style={{ float: 'right' }} onClick={handleRemove}>x</button>
+        </div>
+    )
+
+};
