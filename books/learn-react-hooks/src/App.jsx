@@ -23,7 +23,7 @@ import { Router, View } from 'react-navi'
 import { mount, route } from 'navi'
 import PostPage from './pages/PostPage'
 import FooterBar from './pages/FooterBar'
-
+import Todo from './todo'
 
 
 const routes = mount({
@@ -58,14 +58,15 @@ function App() {
 
   return (
     <div className="App">
-      <StateContext.Provider value={{ state, dispatch }}>
+      <Todo></Todo>
+      {/* <StateContext.Provider value={{ state, dispatch }}>
         <Router routes={routes}>
           <HeaderBar setTheme={setTheme} />
           <hr />
           <View></View>
           <FooterBar></FooterBar>
         </Router>
-      </StateContext.Provider>
+      </StateContext.Provider> */}
 
     </div>
   )
