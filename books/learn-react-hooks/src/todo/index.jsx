@@ -11,14 +11,16 @@ import { inject } from 'mobx-react'
 import AddTodo from '../components/AddTodo'
 import TodoList from '../components/TodoList'
 import TodoFilter from '../components/TodoFilter'
+import { useTodoStore } from '../hooks';
 
 
 
 
 
 
-function Todo({todoStore}) {
- 
+function Todo() {
+    const todoStore = useTodoStore()
+
     useEffect(() => {
         todoStore.fetch();
     }, [todoStore])
@@ -39,4 +41,4 @@ function Todo({todoStore}) {
     )
 }
 
-export default inject('todoStore')(Todo);
+export default Todo;

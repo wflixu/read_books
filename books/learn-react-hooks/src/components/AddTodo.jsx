@@ -1,10 +1,12 @@
 import React, { Component, useState } from 'react';
 
 import { inject, observer } from 'mobx-react'
+import { useTodoStore } from '../hooks';
 
-function AddTodo({ todoStore }) {
+function AddTodo() {
 
     const [input, setInput] = useState('');
+    const todoStore = useTodoStore();
 
     function handleInput(e) {
         setInput(e.target.value);
@@ -29,4 +31,4 @@ function AddTodo({ todoStore }) {
     )
 
 }
-export default inject('todoStore')(AddTodo);
+export default observer(props=><AddTodo/>) ;

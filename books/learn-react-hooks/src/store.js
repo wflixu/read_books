@@ -1,4 +1,4 @@
-import { observable, action, computed, makeObservable } from 'mobx';
+import { observable, action, computed, makeObservable,makeAutoObservable } from 'mobx';
 import { fetchAPITodos, generateID } from './api';
 
 export default class TodoStore {
@@ -6,18 +6,7 @@ export default class TodoStore {
   filter = 'all';
 
   constructor(value) {
-    makeObservable(this, {
-      todos: observable,
-      filter: observable,
-
-      filteredTodos: computed,
-
-      fetch: action,
-      addTodo: action,
-      toggleTodo: action,
-      removeTodo: action,
-      filterTodos: action,
-    });
+    makeAutoObservable(this);
   }
 
   get filteredTodos() {
@@ -34,11 +23,13 @@ export default class TodoStore {
 
   fetch() {
     fetchAPITodos().then((fetchedTodos) => {
+      console.log('fetchedTodos',fetchedTodos)
       this.todos = fetchedTodos;
     });
   }
 
   addTodo(title) {
+    console.log('addTodo',title)
     this.todos.push({ id: generateID(), title, completed: false });
   }
 
