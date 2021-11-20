@@ -9,14 +9,15 @@ const http = axios.create({
 })
 
 import { Provider } from 'react-redux'
-import ConnectedApp from './ConnectedApp'
+
 
 import { store } from './store';
+import Todo from './todo'
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-        <ConnectedApp />
+        <Todo />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

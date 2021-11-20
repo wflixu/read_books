@@ -1,6 +1,8 @@
 import React, { Component, useState } from 'react';
-
-function AddTodo({ addTodo }) {
+import { useDispatch } from 'react-redux';
+import { addTodo } from './../actions';
+function AddTodo() {
+    const dispatch = useDispatch();
     const [input, setInput] = useState('')
 
 
@@ -9,7 +11,7 @@ function AddTodo({ addTodo }) {
     }
     function handleAdd() {
         if (input) {
-            addTodo(input);
+            dispatch(addTodo(input));
             setInput('');
         }
     }
