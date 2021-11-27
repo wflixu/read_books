@@ -5,7 +5,7 @@ export default class TodoStore {
   todos = [];
   filter = 'all';
 
-  constructor(value) {
+  constructor() {
     makeAutoObservable(this);
   }
 
@@ -16,7 +16,6 @@ export default class TodoStore {
       case 'completed':
         return this.todos.filter((t) => t.completed === true);
       default:
-      case 'all':
         return this.todos;
     }
   }
@@ -25,12 +24,15 @@ export default class TodoStore {
     fetchAPITodos().then((fetchedTodos) => {
       console.log('fetchedTodos',fetchedTodos)
       this.todos = fetchedTodos;
+      
     });
   }
 
   addTodo(title) {
     console.log('addTodo',title)
+    // makeAutoObservable(this);
     this.todos.push({ id: generateID(), title, completed: false });
+    console.log(this.todos)
   }
 
   toggleTodo(id) {

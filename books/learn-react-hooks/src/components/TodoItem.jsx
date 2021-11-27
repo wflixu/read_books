@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { inject, observer } from 'mobx-react'
+import {  observer } from 'mobx-react-lite'
 import { useTodoStore } from '../hooks';
 
 function TodoItem({item }) {

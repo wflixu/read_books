@@ -5,7 +5,7 @@ import Header from './Header';
 import { useDispatch } from 'react-redux';
 import { fetchTodos } from './../actions'
 
-import { inject } from 'mobx-react'
+import {  observer } from 'mobx-react-lite'
 
 
 import AddTodo from '../components/AddTodo'
@@ -41,4 +41,4 @@ function Todo() {
     )
 }
 
-export default Todo;
+export default observer(props=><Todo/>) ;

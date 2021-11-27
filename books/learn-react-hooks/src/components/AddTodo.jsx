@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 
-import { inject, observer } from 'mobx-react'
+import {  observer } from 'mobx-react-lite'
 import { useTodoStore } from '../hooks';
 
 function AddTodo() {
@@ -31,4 +31,4 @@ function AddTodo() {
     )
 
 }
-export default observer(props=><AddTodo/>) ;
+export default observer(props=><AddTodo {...props}/>) ;
