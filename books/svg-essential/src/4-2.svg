@@ -1,0 +1,20 @@
+<svg width="135px" height="45px" 
+xmlns="http://www.w3.org/2000/svg" 
+xmlns:xlink="http://www.w3.org/1999/xlink"
+
+preserveAspectRatio="xMaxYMax meet"
+viewBox="0 0 200 200"
+>
+   <line x1="10" y1="20"
+       x2="80" y2="20"
+       stroke="black"
+       stroke-width="10"/>
+   <line x1="0.7cm" y1="1cm"
+       x2="0.7cm" y2="2.0cm"
+       stroke="black"
+       stroke-width="10"/>
+   <line x1="30" y1="30"
+       x2="85" y2="85"
+       stroke="black"
+       stroke-width="10"/>
+</svg>

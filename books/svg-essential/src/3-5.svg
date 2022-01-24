@@ -1,7 +1,8 @@
-<svg width="45" height="135" 
+<svg width="135" height="45" 
 xmlns="http://www.w3.org/2000/svg" 
-xmlns:xlink="http://www.w3.org/1999/xlink" 
-preserveAspectRatio="xMinYMin meet"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+
+preserveAspectRatio="xMaxYMax meet"
 viewBox="0 0 90 90"
 >
   <title>cat</title>

@@ -1,0 +1,10 @@
+<svg width="400px" height="300px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 300">
+   <g style="stroke:black;fill:none;">
+       <ellipse cx="154" cy="154" rx="150" ry="120" style=""/>
+       <ellipse cx="152" cy="152" rx="150" ry="120" style=""/>
+       <path d="M 302 152 A 150 120, 0,1,0,2 152 A 75 60,0,1,0,152 152"
+           fill="#fcc" stroke="" stroke-width="" />
+
+           <path d="M 152 152 A 75 60,0,1,1, 302 152" fill="#cef"/>
+   </g>
+</svg>

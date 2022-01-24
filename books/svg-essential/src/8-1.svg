@@ -1,0 +1,6 @@
+<svg width="400px" height="300px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 300">
+   
+   <path d="M 0 0 Q 5 20 10 10 T 20 20"
+       fill="none" stroke="black" stroke-width="" />
+       <path d="M 0 0 h20 v20 h-20z" fill="none" stroke="black" />
+</svg>

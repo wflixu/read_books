@@ -1,0 +1,8 @@
+<svg width="400px" height="300px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 300">
+   <g style="stroke:black;fill:none;">
+      <path d="M 10 10,60 10, 60 60,10 60 z M 15 15,45 15 ,45 45,15 45z"
+           fill="red" stroke="" stroke-width="" fill-rule="evenodd"    />
+      <path d="M 10 10,60 10, 60 60,10 60 z"
+           fill="" stroke="" stroke-width="" />
+   </g>
+</svg>
