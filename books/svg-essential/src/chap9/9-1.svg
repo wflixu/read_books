@@ -1,0 +1,8 @@
+<svg width="400px" height="300px" xmlns="http://www.w3.org/2000/svg" 
+     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 300">
+    <path d="M 20 10, 20 120 M 10 30 100 30 M 10 70 100 70 M 10 110 100 110"
+       fill="none" stroke="gray" stroke-width="" />
+    <text x="20"  y="30" style="">Simplest Text</text>
+    <text x="20"  y="70" style="stroke:black;" >outlined/filled</text>
+    <text x="20"  y="110" style="stroke:black;stroke-width:0.5;fill:none" >outlined/filled</text>
+    </svg>
