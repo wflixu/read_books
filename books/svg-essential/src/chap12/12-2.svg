@@ -1,0 +1,9 @@
+<svg width="400px" height="300px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 300">
+   <rect x="10" y="10" width="20" height="20" style="stroke:black;fill:green;fill-opacity:0.25;">
+      
+      <animate attributeType="XML" attributeName="width" from="200" to="20" dur="8s" begin="0s" fill="freeze"/>
+      <animate attributeType="XML" attributeName="height" from="20" to="150" dur="8s" begin="0s" fill="freeze"/>
+      <animate attributeType="css" attributeName="fill-opacity" from="0.25" to="1" begin="0s"   dur="3s" fill="freeze"/>
+      <animate attributeType="css" attributeName="fill-opacity" from="1" to="0.25" begin="3s"   dur="3s" fill="freeze"/>
+   </rect>
+</svg>

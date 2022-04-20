@@ -1,0 +1,11 @@
+<svg width="400px" height="300px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 300">
+
+   <circle cx="60" cy="60" r="30" style="fill:#f9f;stroke:gray;">
+      <animate id="c1" attributeType="XML" attributeName="r" from="30" to="10" dur="4s" begin="2s" fill="freeze" />
+      />
+   </circle>
+   <circle cx="120" cy="60" r="10" style="fill:#9f9;stroke:gray;">
+      <animate attributeType="XML" attributeName="r" from="10" to="30" dur="4s" begin="c1.end" fill="freeze" />
+      />
+   </circle>
+</svg>

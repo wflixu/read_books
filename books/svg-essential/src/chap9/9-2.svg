@@ -1,0 +1,14 @@
+<svg width="400px" height="300px" xmlns="http://www.w3.org/2000/svg" 
+     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 300">
+     <g style="font-size:18pt">
+         <text x="20"  y="20" style="font-weight:bold;">bold</text>
+         <text x="120"  y="20" style="font-style:italic;">italic</text>
+         <text x="20"  y="60" style="text-decoration:underline;">under</text>
+         <text x="120"  y="60" style="text-decoration:overline;">over</text>
+         <text x="200"  y="60" style="text-decoration:line-through;">through</text>
+         <text x="20"  y="90" style="word-spacing:10pt;">more word  space</text>
+         <text x="20"  y="120" style="word-spacing:-3pt;">less word  space</text>
+         <text x="20"  y="150" style="letter-spacing:5pt;">wide letter  space</text>
+         <text x="20"  y="180" style="letter-spacing:-5pt;">narrow letter  space</text>
+     </g>
+    </svg>

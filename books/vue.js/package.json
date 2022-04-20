@@ -1,0 +1,16 @@
+{
+  "name": "vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "node src/index.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+  
