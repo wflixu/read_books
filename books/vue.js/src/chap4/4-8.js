@@ -7,10 +7,10 @@ let activeEffect;
 const effectStack = [];
 
 const obj = new Proxy(data, {
-  get(target, key) {
+  get(target, key, receiver) {
     track(target, key);
 
-    return target[key];
+    return Reflect.get(target,key,receiver);
   },
   set(target, key, value) {
     target[key] = value;
@@ -18,6 +18,9 @@ const obj = new Proxy(data, {
     trigger(target, key);
     return true;
   },
+  defineProperty(){
+
+  }
 });
 
 function track(target, key) {
@@ -59,7 +62,7 @@ function trigger(target, key) {
   });
 }
 
-function effect(fn, options = {}) {
+export function effect(fn, options = {}) {
   const effectFn = () => {
     cleanup(effectFn);
 

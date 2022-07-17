@@ -1,1 +1,1 @@
-import './chap5/5-1.mjs';
+import './chap5/5-1.js';
