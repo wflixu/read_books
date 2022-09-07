@@ -18,7 +18,11 @@ export function reactive(obj) {
       }
 
       track(target, key);
-      return Reflect.get(target, key, receiver);
+      let res =  Reflect.get(target, key, receiver);
+      if(typeof res == 'object' && res !== null){
+       return reactive(res);
+      }
+      return res;
     },
     set(target, key, value, receiver) {
       const oldVal = target[key];
@@ -29,6 +33,7 @@ export function reactive(obj) {
       if (target === receiver.raw) {
         if (oldVal !== value && (oldVal == oldVal || value == value)) {
           trigger(target, key, type);
+          
         }
       }
 

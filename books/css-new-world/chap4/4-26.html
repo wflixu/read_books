@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        button {
+            height: 40px;
+            min-width: 80px;
+            border: 0;
+            border-radius: 4px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        button:active {
+            box-shadow: inset 0 0 0 999px rgba(0, 0, 0, .1);
+        }
+
+        .normal {
+            background-color: #fff;
+            /* 模拟边框 */
+            box-shadow: inset 1px 0 #a2a9b6, inset -1px 0 #a2a9b6, inset 0 1px #a2a9b6, inset 0 -1px #a2a9b6;
+        }
+
+        .primary {
+            color: #fff;
+            background-color: #2a80eb;
+        }
+
+        .warning {
+            color: #fff;
+            background-color: #eb4646;
+        }
+    </style>
+
+    <button class="normal">正常</button>
+    <button class="primary">主要</button>
+    <button class="warning">警示</button>
+
+</body>
+
+</html>

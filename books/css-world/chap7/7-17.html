@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="page">
+
+        </div>
+    </div>
+    <style>
+        .container {
+            background-color: #666;
+            /* 创建层叠上下文 */
+            position: relative;
+            z-index: 0;
+        }
+
+        .page {
+            background-color: #f4f39e;
+            position: relative;
+            height: 800px;
+        }
+
+        /* 边角卷边阴影 */
+        .page:before,
+        .page:after {
+            content: "";
+            width: 90%;
+            height: 20%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, .3);
+            position: absolute;
+            /* 层叠上下文（灰色背景）之上，定位元素（黄色纸张）之下 */
+            z-index: -1;
+        }
+
+        /* 边角卷边阴影定位和角度控制 */
+        .page:before {
+            transform: skew(-30deg) rotate(-10deg);
+            transform-origin: left bottom;
+            left: 0;
+            bottom: 0;
+        }
+
+        .page:after {
+            transform: skew(15deg) rotate(5deg);
+            transform-origin: right bottom;
+            right: 0;
+            bottom: 0;
+        }
+    </style>
+</body>
+
+</html>
