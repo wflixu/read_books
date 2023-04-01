@@ -2,11 +2,10 @@
   "name": "programming_typescript",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
-  "main": "src/main.js",
+  "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
-    "test": "node src/main.js"
+    "test": "ts-node ./src/chap3.ts "
   },
   "keywords": [],
   "author": "",
@@ -14,6 +13,6 @@
   "dependencies": {
     "@types/node": "^16.9.4",
     "ts-node": "^10.2.1",
-    "typescript": "^4.4.3"
+    "typescript": "~4.9.0"
   }
 }

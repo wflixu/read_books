@@ -1,3 +1,3 @@
-import './chap8';
-
-console.log('start in main');
+import './chap2';
+ 
+console.log('hello Typescript!');
