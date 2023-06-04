@@ -15,3 +15,5 @@ declare module 'foo' {
     export type MyType = number;
     export type MyDefaultType = {a: string}
 }
+
+type MyGlobal = number;
