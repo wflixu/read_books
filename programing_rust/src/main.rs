@@ -21,5 +21,16 @@ fn main() {
   // chap::chap2::cli()
   // chap::chap2::web();
   // chap::chap2::mandelbrot();
-  chap::chap2::rep_text();
+  // chap::chap2::rep_text();
+  // chap::chap3::mul_overflow();
+  // chap::chap3::test_str();
+
+  // chap4
+  // chap::chap4::print_padovan();
+
+  // chap5
+  // chap::chap5::ref_ref();
+
+  // chap7
+  chap::chap7::start_test();
 }

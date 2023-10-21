@@ -4,6 +4,16 @@ pub struct GrayscalMap {
   pub size: (usize, usize),
 }
 
+pub struct Vector2 {
+  x: f32,
+  y: f32,
+}
+
+impl Vector2 {
+  const ZERO: Vector2 = Vector2 { x: 0.0, y: 0.0 };
+  const UNIT: Vector2 = Vector2 { x: 1.0, y: 1.0 };
+}
+
 #[test]
 pub fn test1() {
   let width = 1024;
@@ -40,4 +50,33 @@ pub fn test_unit_struct() {
 pub struct Point {
   x: f64,
   y: f64,
+}
+pub struct Queue<T> {
+  older: Vec<T>,
+  younger: Vec<T>,
+}
+
+impl<T> Queue<T> {
+  pub fn new() -> Queue<T> {
+    Queue {
+      older: Vec::new(),
+      younger: Vec::new(),
+    }
+  }
+
+  pub fn push(&mut self, t: T) {
+    self.younger.push(t);
+  }
+  pub fn is_empty(&self) -> bool {
+    self.older.is_empty() && self.younger.is_empty()
+  }
+}
+
+pub struct Extrema<'elt> {
+  greatest: &'elt i32,
+  least: &'elt i32,
+}
+
+pub struct Polynomial<const N: usize> {
+  coefficients: [f64; N],
 }
