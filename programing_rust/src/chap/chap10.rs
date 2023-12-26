@@ -1,4 +1,26 @@
+use std::cmp::Ordering::{self, *};
 use std::collections::HashMap;
+
+pub fn compare(n: i32, m: i32) -> Ordering {
+  if n < m {
+    Less
+  } else if n > n {
+    Greater
+  } else {
+    Equal
+  }
+}
+// enum Ordering {
+//   Less,
+//   Equal,
+//   Greater,
+// }
+
+enum HttpStatus {
+  Ok = 200,
+  NotModified = 304,
+  NotFound = 404,
+}
 
 enum Json {
   Null,

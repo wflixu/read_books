@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react"
+import React from "react"
 
 import { useColors } from "./color-hooks"
 import { Color } from "./Color"
@@ -8,7 +8,6 @@ export function ColorList() {
   if (!colors.length) {
     return <div>No Color Listed.</div>
   }
-
   return (
     <div>
       {colors.map((color) => (
